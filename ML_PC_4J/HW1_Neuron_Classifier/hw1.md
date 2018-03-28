@@ -5,10 +5,10 @@
 
 ##### Solution
 
-<center> ![](Perceptron.png) </center> 
+![](Perceptron.png)
 
 (1.1) 根据数据我们可以直接得到weight vector $[0,-1]$,由 $Wp + b = 0$ 可得如图所示的Decision boundary, 即网络为
-<center> ![](Neuron.png) </center> 
+![](Neuron.png) 
 <center> $a = hardlims􏰄([0\ -1] p + (-0.5)􏰅)$ </center>
 <center> $w_{1,1} = 0, w_{1,2} = -1, b = -0.5$ </center>
 
@@ -48,9 +48,9 @@ def predict(data,W,b):
 (1.4) 样本$P_6,P_7,P_8$总是用同一种方式进行分类与W,b的选择无关，但$P_5$依赖于W,b的选择。
 
 当W,b的选择能够形成这样的Decision boundary时，$P_5$会被分类为1:
-<center> ![](1_4_2.png) </center> 
+![](1_4_2.png) 
 当W,b的选择能够形成这样的Decision boundary时，$P_5$会被分类为0: 
-<center> ![](1_4_3.png) </center> 
+![](1_4_3.png) 
 而由于$P_1,P_2,P_3,P_4$的限制，$P_6,P_7,P_8$则不会出现这种情况，
 
 (1.5) 首先用Python实现学习算法：
@@ -142,9 +142,9 @@ Iteration No:  3
 学习速率为0.1时，误差训练变的非常巨大，无法收敛，速度过快
 不同学习率下误差与迭代次数的曲线：
 learning_rate = 0.0001  
-<center> ![](error0001.png) </center> 
+![](error0001.png) 
 learning_rate = 0.001  
-<center> ![](error001.png) </center> 
+ ![](error001.png) 
 learning_rate = 0.1  
 <center>全都是nan……</center> 
 ##### 具体实现
