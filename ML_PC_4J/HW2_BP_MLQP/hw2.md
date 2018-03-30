@@ -126,6 +126,9 @@ def main():
 
 
 学习速率为0.5时：
+
+
+
 <img src="lr05.png" width = "50%" />  
 <center> 分界面 </center>
 
@@ -135,7 +138,10 @@ def main():
 <img src="lr05t.png" width = "50%" /> 
 <center> 运行时间 </center>
 
+
+
 学习速率为1时：
+
 <img src="lr1.png" width = "50%" />  
 <center> 分界面 </center>
 
@@ -145,7 +151,10 @@ def main():
 <img src="lr1t.png" width = "50%" /> 
 <center> 运行时间 </center>
 
+
+
 学习速率为1.5时：
+
 <img src="lr15.png" width = "50%" />  
 <center> 分界面 </center>
 
