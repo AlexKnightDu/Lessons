@@ -107,14 +107,14 @@ def main():
     y = tf.nn.softmax(tf.matmul(hidden3, W5) + b5)
     y_ = tf.placeholder(tf.float32, [None, out_units])
     regular = layers.l1_l2_regularizer(.5)(W1) + layers.l1_l2_regularizer(.5)(W2) + layers.l1_l2_regularizer(.5)(W3)
-    loss = tf.reduce_mean(-tf.reduce_sum(y_ * tf.log(y)) + 0.0015 * regular)
+    loss = tf.reduce_mean(-tf.reduce_sum(y_ * tf.log(y)) + 0.002 * regular)
     #loss = tf.reduce_mean(-tf.reduce_sum(tf.reduce_sum(y_ * tf.log(y)) + regular))
     #loss = cross_entropy + regular
     #train_step = tf.train.GradientDescentOptimizer(0.001).minimize(cross_entropy)
     train_step = tf.train.AdagradOptimizer(0.001).minimize(loss)
 
     tf.global_variables_initializer().run()
-    for j in range(0,500):
+    for j in range(0,5000):
         for i in range(0, ma.floor(len_train_data / batch_size)):
             batch_x = next_batch(train_data, batch_size, i)
             batch_y = next_batch(train_label, batch_size, i)
