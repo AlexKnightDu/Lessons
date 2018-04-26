@@ -4,23 +4,11 @@
 import tensorflow as tf
 import numpy as np
 import scipy.io as scio
-#import pandas as pd
 import math as ma
 import multiprocessing as mp
 from tensorflow.contrib import layers
 import time
 import os
-
-def next_batch1(data, label, batch_size):
-    size = len(data)
-    begin = np.random.randint(0,size)
-    interval = np.random.randint(0,200)
-    batch_data = []
-    batch_label = []
-    for i in range(0,batch_size):
-        batch_data += [data[(begin + i * interval) % size]]
-        batch_label += [label[(begin + i * interval) % size]]
-    return batch_data, batch_label
 
 def next_batch(data, label, batch_size):
     index  = np.arange(len(data))
@@ -30,12 +18,12 @@ def next_batch(data, label, batch_size):
     batch_label = label[index]
     return batch_data,batch_label
 
-
 def onehot(labels, units):
+    print(labels)
     l = len(labels)
     onehot_labels = np.zeros([l,units])
     for i in range(0,l):
-        onehot_labels[i][labels[i][0]] = 1
+        onehot_labels[i][int(labels[i])] = 1
     return onehot_labels
 
 def normalize(data, base):
@@ -114,48 +102,55 @@ def network(parameters):
     return [decri,prediction]
 
 
-def process_data(train_data, train_label):
+def process_data(train_data, train_label, random):
     data = [[],[],[],[]]
     labels = [[],[],[],[]]
+    pair_data = [[],[],[],[]]
+    pair_labels = [[],[],[],[]]
     for i in range(0,len(train_label)):
         data[train_label[i][0]] += [train_data[i]]
-        labels[train_label[i][0]] += [[1]]
-        for j in range(0,4):
-            if (j != train_label[i][0]):
-                data[j] += [train_data[i]]
-                labels[j] += [[0]]
-    for i in range(0,4):
-        data[i] = np.array(data[i])
-        labels[i] = np.array(labels[i])
-    return data, labels
-
-def random_generate_data(train_data, train_label, min_num, max_num, num):
+        labels[train_label[i][0]] += [1]
+    if (random):
+        for i in range(0,len(train_label)):
+            for j in range(0,4):
+                if (j != train_label[i][0]):
+                    data[j] += [train_data[i]]
+                    labels[j] += [0]
+        for i in range(0,4):
+            data[i] = np.array(data[i])
+            labels[i] = np.array(labels[i])
+        return data, labels
+    else:
+        for i in range(0,4):
+            for j in range(0,4):
+                if (i != j):
+                    pair_data[i] += [np.array(data[i]+data[j])]
+                    pair_labels[i] += [np.array(labels[i]+np.zeros(len(data[j])).tolist())]
+        return pair_data, pair_labels
+        
+        
+def prior_generate_data(train_data, train_label, min_num, max_num, num):
     data = []
     labels = []
-    index  = np.arange(min_num * max_num)
-    np.random.shuffle(index)
     for i in range(0,max_num):
         data += [[]]
         labels += [[]]
         for j in range(0,min_num):
-                datum, label = next_batch(train_data[index[i*min_num + j] % 4], train_label[index[i*min_num + j] % 4], num)
+                datum, label = next_batch(train_data[i][j] , train_label[i][j], num)
                 data[i] += [datum]
                 labels[i] += [(label)]
     return np.array(data), np.array(labels)
     
-
-def prior_generate_data(train_data, train_label, min_num, max_num, num):
+def random_generate_data(train_data, train_label, min_num, max_num, num):
     data = []
     labels = []
-    index  = np.arange(max_num)
-    np.random.shuffle(index)
     for i in range(0,max_num):
         data += [[]]
         labels += [[]]
         for j in range(0,min_num):
-                datum, label = next_batch(train_data[index[i] % 4], train_label[index[i] % 4], num)
+                datum, label = next_batch(train_data[i % 4], train_label[i % 4], num)
                 data[i] += [datum]
-                labels[i] += [(label)]
+                labels[i] += (label)
     return np.array(data), np.array(labels)
 
 def minmax(results, max_num, min_num, test_label):
@@ -167,12 +162,11 @@ def minmax(results, max_num, min_num, test_label):
     for i in range(0,max_num):
         min_result = []
 
-        
 
 def main():
-    min_num = 1
+    min_num = 3
     max_num = 4
-    sub_data_size = 1000
+    sub_data_size = 10
 
     data_file = './data.mat'
     data = scio.loadmat(data_file)
@@ -187,16 +181,23 @@ def main():
     train_label = data['train_label_eeg']
     test_label = data['test_label_eeg']
 
-    ovr_data, ovr_label = process_data(train_data, train_label)
-    ovr_test_data, ovr_test_label = process_data(test_data, test_label)
-    for i in range(0,len(ovr_label)):
-        ovr_label[i] = onehot(ovr_label[i], 2)
+    ovr_random_data, ovr_random_label = process_data(train_data, train_label, True)
+    ovr_prior_data, ovr_prior_label = process_data(train_data, train_label, False)
+    #ovr_test_data, ovr_test_label = process_data(test_data, test_label)
+    for i in range(0,len(ovr_random_label)):
+        ovr_random_label[i] = onehot(ovr_random_label[i], 2)
+    print(ovr_random_label)
+    for i in range(0,max_num):
+        for j in range(0,max_num-1):
+            ovr_prior_label[i][j] = onehot(ovr_prior_label[i][j],2)
+    train_label = np.concatenate(train_label)
+    test_label = np.concatenate(test_label)
     train_label = onehot(data['train_label_eeg'], out_units)
     test_label = onehot(data['test_label_eeg'], out_units)
 
 
-    #M3_data, M3_label = random_generate_data(ovr_data, ovr_label, min_num, max_num, sub_data_size)
-    M3_data, M3_label = prior_generate_data(ovr_data, ovr_label, min_num, max_num, sub_data_size)
+    #M3_data, M3_label = random_generate_data(ovr_random_data, ovr_random_label, min_num, max_num, sub_data_size)
+    M3_data, M3_label = prior_generate_data(ovr_prior_data, ovr_prior_label, min_num, max_num, sub_data_size)
 
     len_train_data = len(train_data)
     len_test_data = len(test_data)
