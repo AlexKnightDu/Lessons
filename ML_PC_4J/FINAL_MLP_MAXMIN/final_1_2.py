@@ -34,10 +34,11 @@ def normalize(data, base):
         max_datum += [max(base[:,i])]
     min_datum = np.array(min_datum)
     max_datum = np.array(max_datum)
-    distance = max_datum - min_datum
+    medium_datum = (min_datum + max_datum) * 1.0 / 2
+    distance = (max_datum - min_datum) * 1.0 / 2
     for i in range(len(data)):
         data[i] = np.array(data[i])
-        data[i] = ((data[i] - min_datum) * 1.0 / distance).tolist()
+        data[i] = ((data[i] - medium_datum) / distance).tolist()
         
 
  
@@ -54,13 +55,13 @@ def main():
     sess = tf.InteractiveSession()
 
     in_units = 310
-    h1_units = 200
-    h2_units = 30
+    h1_units = 10
+    h2_units = 6
     h3_units = 10
-    h4_units = 8
+    h4_units = 10
     out_units = 4
 
-    batch_size = 5
+    batch_size = 4
 
     train_data = data['train_de']
     train_label = onehot(data['train_label_eeg'], out_units)
@@ -91,27 +92,27 @@ def main():
     #W5 = tf.Variable(tf.truncated_normal([h4_units, out_units], stddev=0.1))
     #b5 = tf.Variable(tf.zeros([out_units]))
 
-    W5 = tf.Variable(tf.truncated_normal([h3_units, out_units], stddev=0.1))
+    W5 = tf.Variable(tf.truncated_normal([h2_units, out_units], stddev=0.1))
     b5 = tf.Variable(tf.zeros([out_units]))
     x = tf.placeholder(tf.float32, [None, in_units])
     keep_prob = tf.placeholder(tf.float32)
     
     hidden1 = tf.nn.relu(tf.matmul(x,W1) + b1)
-    #hidden1_drop = tf.nn.dropout(hidden1, keep_prob)
-    #hidden2 = tf.nn.relu(tf.matmul(hidden1_drop, W2) + b2)
-    hidden2 = tf.nn.relu(tf.matmul(hidden1, W2) + b2)
-    #hidden2_drop = tf.nn.dropout(hidden2, keep_prob)
-    hidden3 = tf.nn.relu(tf.matmul(hidden2, W3) + b3)
+    hidden1_drop = tf.nn.dropout(hidden1, keep_prob)
+    hidden2 = tf.nn.relu(tf.matmul(hidden1_drop, W2) + b2)
+    #hidden2 = tf.nn.relu(tf.matmul(hidden1, W2) + b2)
+    hidden2_drop = tf.nn.dropout(hidden2, keep_prob)
+    hidden3 = tf.nn.relu(tf.matmul(hidden2_drop, W3) + b3)
     hidden4 = tf.nn.relu(tf.matmul(hidden3, W4) + b4)
     #y = tf.nn.softmax(tf.matmul(hidden4, W5) + b5)
-    y = tf.nn.softmax(tf.matmul(hidden3, W5) + b5)
+    y = tf.nn.softmax(tf.matmul(hidden2_drop, W5) + b5)
     y_ = tf.placeholder(tf.float32, [None, out_units])
-    regular = layers.l1_l2_regularizer(.5)(W1) + layers.l1_l2_regularizer(.5)(W2) + layers.l1_l2_regularizer(.5)(W3)
-    loss = tf.reduce_mean(-tf.reduce_sum(y_ * tf.log(y)) + 0.002 * regular)
+    regular = layers.l2_regularizer(.5)(W1) + layers.l2_regularizer(.5)(W2) #+ layers.l2_regularizer(.5)(W3)
+    loss = tf.reduce_mean(-tf.reduce_sum(y_ * tf.log(y)) + 0.2 * regular)
     #loss = tf.reduce_mean(-tf.reduce_sum(tf.reduce_sum(y_ * tf.log(y)) + regular))
     #loss = cross_entropy + regular
     #train_step = tf.train.GradientDescentOptimizer(0.001).minimize(cross_entropy)
-    train_step = tf.train.AdagradOptimizer(0.001).minimize(loss)
+    train_step = tf.train.AdagradOptimizer(0.003).minimize(loss)
 
     tf.global_variables_initializer().run()
     for j in range(0,5000):
