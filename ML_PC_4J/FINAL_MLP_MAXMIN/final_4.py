@@ -19,7 +19,7 @@ def next_batch(data, label, batch_size):
     return batch_data,batch_label
 
 def onehot(labels, units):
-    print(labels)
+    #print(labels)
     l = len(labels)
     onehot_labels = np.zeros([l,units])
     for i in range(0,l):
@@ -47,10 +47,15 @@ def network(parameters):
     test_data = parameters[2]
     test_label = parameters[3]
     decri = parameters[4]
-
+    descri = parameters[5]
 
     print('the process parent id :',os.getppid())  
     print('the process id is :',os.getpid())
+
+    loss_out = open(descri + '_loss.txt', 'w')
+    acc_train_out  = open(descri + '_acc_train.txt', 'w')
+
+    #acc_test_out.write(str(test_accur) + '\n')
 
     in_units = 310
     h1_units = 40
@@ -79,6 +84,7 @@ def network(parameters):
 
     train_step = tf.train.GradientDescentOptimizer(learning_rate).minimize(loss)
 
+    all_prediction = []
     tf.global_variables_initializer().run()
     for j in range(0,iter_num):
         for i in range(0, batch_num):
@@ -94,12 +100,12 @@ def network(parameters):
         print('Iter:' + str(j))
         print('loss: ' + str(total_cross_entropy)) 
         print(train_accur)
-        #print(test_accur)
-    prediction = (sess.run(result, feed_dict = {x:test_data}))
-    real = (sess.run(y_, feed_dict = {y_:train_label}))
-    #print(prediction)
-    #print(real)
-    return [decri,prediction]
+        loss_out.write(str(total_cross_entropy) + '\n')
+        acc_train_out.write(str(train_accur) + '\n')
+        prediction = (sess.run(result, feed_dict = {x:test_data}))
+        all_prediction += [prediction]
+    all_prediction = np.array(all_prediction)
+    return [decri,all_prediction]
 
 
 def process_data(train_data, train_label, random):
@@ -136,7 +142,7 @@ def prior_generate_data(train_data, train_label, min_num, max_num, num):
         data += [[]]
         labels += [[]]
         for j in range(0,min_num):
-                datum, label = next_batch(train_data[i][j] , train_label[i][j], num)
+                datum, label = next_batch(train_data[j] , train_label[j], num)
                 data[i] += [datum]
                 labels[i] += [(label)]
     return np.array(data), np.array(labels)
@@ -148,25 +154,35 @@ def random_generate_data(train_data, train_label, min_num, max_num, num):
         data += [[]]
         labels += [[]]
         for j in range(0,min_num):
-                datum, label = next_batch(train_data[i % 4], train_label[i % 4], num)
+                datum, label = next_batch(train_data, train_label, num)
                 data[i] += [datum]
                 labels[i] += (label)
     return np.array(data), np.array(labels)
 
-def minmax(results, max_num, min_num, test_label):
-    final_result = []
+def minmax(results, min_num, max_num, test_label):
+    min_result = []
+    max_result = []
     for i in range(0,max_num):
-        final_result += [[]]
-    for result in results:
-        final_result[result[i][0]] += np.array(results[i][1])
-    for i in range(0,max_num):
-        min_result = []
-
+        min_result += [[]]
+        for j in range(0,len(results[0][0])):
+            min_result[i] += [[]]
+            for k in range(0,len(test_label)):
+                min_result[i][j] += [min(results[i][:][:,j][:,k])]
+    min_result = np.array(min_result)
+    #print('________')
+    #print(min_result)
+    for i in range(0,len(min_result[0])):
+        max_result += [[]]
+        for j in range(0,len(test_label)):
+            max_result[i] += [max(min_result[:,i][:,j])]
+    return max_result
+        
 
 def main():
     min_num = 3
     max_num = 4
-    sub_data_size = 10
+    cate_num = 4
+    sub_data_size = 1000
 
     data_file = './data.mat'
     data = scio.loadmat(data_file)
@@ -181,12 +197,13 @@ def main():
     train_label = data['train_label_eeg']
     test_label = data['test_label_eeg']
 
+
     ovr_random_data, ovr_random_label = process_data(train_data, train_label, True)
     ovr_prior_data, ovr_prior_label = process_data(train_data, train_label, False)
     #ovr_test_data, ovr_test_label = process_data(test_data, test_label)
     for i in range(0,len(ovr_random_label)):
         ovr_random_label[i] = onehot(ovr_random_label[i], 2)
-    print(ovr_random_label)
+    #print(ovr_random_label)
     for i in range(0,max_num):
         for j in range(0,max_num-1):
             ovr_prior_label[i][j] = onehot(ovr_prior_label[i][j],2)
@@ -195,50 +212,82 @@ def main():
     train_label = onehot(data['train_label_eeg'], out_units)
     test_label = onehot(data['test_label_eeg'], out_units)
 
+    results = [[],[],[],[]]
 
-    #M3_data, M3_label = random_generate_data(ovr_random_data, ovr_random_label, min_num, max_num, sub_data_size)
-    M3_data, M3_label = prior_generate_data(ovr_prior_data, ovr_prior_label, min_num, max_num, sub_data_size)
+    time_stamp = time.strftime("%H-%M-%S",time.localtime()) 
 
-    len_train_data = len(train_data)
-    len_test_data = len(test_data)
+    for k in range(0,cate_num):
+        #M3_data, M3_label = random_generate_data(ovr_random_data[k], ovr_random_label[k], min_num, max_num, sub_data_size)
+        M3_data, M3_label = prior_generate_data(ovr_prior_data[k], ovr_prior_label[k], min_num, max_num, sub_data_size)
+
+        len_train_data = len(train_data)
+        len_test_data = len(test_data)
     
 
-    pool = mp.Pool()
-    processes = []
-    results = []
-    for i in range(0, max_num):
-        processes += [[]]
-        results += [[]]
-        for j in range(0, min_num):
-            parameters = [M3_data[i][j], M3_label[i][j], test_data, test_label, i]
-            processes[i] += [pool.apply_async(network, args=(parameters,))]
-            results[i] += [[]]
-    pool.close()
-    pool.join()
+        pool = mp.Pool()
+        processes = []
+        result = []
+        for i in range(0, max_num):
+            processes += [[]]
+            result += [[]]
+            for j in range(0, min_num):
+                descri = './t_' + time_stamp + '_' + str(i) + '_' + str(j)
+                parameters = [M3_data[i][j], M3_label[i][j], test_data, test_label, i, descri]
+                processes[i] += [pool.apply_async(network, args=(parameters,))]
+                result[i] += [[]]
+        pool.close()
+        pool.join()
 
-    for i in range(0, max_num):
-        for j in range(0, min_num):
-            results[i][j] = processes[i][j].get()
-            print(sum(results[i][j][1]))
+        for i in range(0, max_num):
+            for j in range(0, min_num):
+                temp = processes[i][j].get()
+                result[temp[0]][j] = temp[1]
+        for i in range(0,max_num):
+            result[i] = np.array(result[i])
+        result = np.array(result)
+        #print(result)
 
-    #output_file = descri + '_' + time.strftime("%H-%M-%S",time.localtime()) + '.txt'
-    #loss_out = open('./loss_' + output_file, 'w')
-    #acc_train_out = open('./acc_train_' + output_file, 'w')
-    #acc_test_out = open('./acc_test_' + output_file, 'w')
-    #pred_out = open('./predict_' + output_file, 'w')
+    
+        #results[k] += [(result)]
+        results[k] += minmax(result, min_num, max_num, test_label)
 
-    #acc_train_out.write(str(train_accur) + '\n')
-    #acc_test_out.write(str(test_accur) + '\n')
+    #for k in range(cate_num):
+        #print(results[k])
 
-    #prediction_static = []
-    #for i in range(4):
-        #prediction_static += [[0,0,0,0]]
-    #for i in range(0,len(real)):
-        #prediction_static[real[i]][prediction[i]] += 1
-    #for i in range(4):
-        #print(prediction_static[i])
-    #pred_out.write(str(prediction_static))
-    #loss_out.write(str(total_cross_entropy) + '\n')
+    final_result = []
+    for w in range(0,len(results[0])):
+        final_result += [[]] 
+        for u in range(0,len(test_label)):
+            flag = 1
+            for v in range(cate_num):
+                if results[v][w][u] == 1:
+                    flag = 0
+                    final_result[w] += [v]
+                    break
+            if flag:
+                final_result[w] += [0]
+    print(final_result)
+    real = np.concatenate(data['test_label_eeg'])
+    prediction = final_result
+
+    pred_out = open('./p_' + time_stamp + '_predict.txt' , 'w')
+    acc_out = open('./p_' + time_stamp + '_acc.txt' , 'w')
+    for w in range(0,len(results[0])):
+        prediction_static = []
+        for i in range(4):
+            prediction_static += [[0,0,0,0]]
+        for i in range(0,len(real)):
+            prediction_static[real[i]][prediction[w][i]] += 1
+        for i in range(4):
+            print(prediction_static[i])
+        final_accuracy = 0
+        for i in range(4):
+            final_accuracy += prediction_static[i][i]
+        final_accuracy = (final_accuracy * 1.0) / len(test_label)
+        print(final_accuracy)
+        pred_out.write(str(prediction_static) + '\n')
+        acc_out.write(str(final_accuracy) + '\n')
+
 
 
 main()
