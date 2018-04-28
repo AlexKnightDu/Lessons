@@ -86,7 +86,6 @@ def network(parameters):
 
     all_prediction = []
     tf.global_variables_initializer().run()
-    begin = time.time()
     for j in range(0,iter_num):
         for i in range(0, batch_num):
             batch_x, batch_y = next_batch(train_data, train_label, batch_size)
@@ -105,8 +104,6 @@ def network(parameters):
         acc_train_out.write(str(train_accur) + '\n')
         prediction = (sess.run(result, feed_dict = {x:test_data}))
         all_prediction += [prediction]
-    end = time.time()
-    print((end - begin))
     all_prediction = np.array(all_prediction)
     return [decri,all_prediction]
 
@@ -182,8 +179,8 @@ def minmax(results, min_num, max_num, test_label):
         
 
 def main():
-    min_num = 3
-    max_num = 4
+    min_num = 1
+    max_num = 1
     cate_num = 4
     sub_data_size = 1000
 

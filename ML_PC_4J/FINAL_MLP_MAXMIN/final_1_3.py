@@ -101,6 +101,7 @@ def main():
     train_step = tf.train.GradientDescentOptimizer(learning_rate).minimize(loss)
 
     tf.global_variables_initializer().run()
+    begin = time.time()
     for j in range(0,100):
         for i in range(0, batch_num):
             batch_x, batch_y = next_batch(train_data, train_label, batch_size)
@@ -122,6 +123,8 @@ def main():
         acc_train_out.write(str(train_accur) + '\n')
         acc_test_out.write(str(test_accur) + '\n')
 
+    end = time.time()
+    print((end - begin))
     prediction = (sess.run(result, feed_dict = {x:test_data}))
     real = (sess.run(result, feed_dict = {y:test_label}))
     print(prediction)
