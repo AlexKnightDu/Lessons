@@ -159,7 +159,7 @@ def random_generate_data(train_data, train_label, min_num, max_num, num):
         for j in range(0,min_num):
                 datum, label = next_batch(train_data, train_label, num)
                 data[i] += [datum]
-                labels[i] += (label)
+                labels[i] += [label]
     return np.array(data), np.array(labels)
 
 def minmax(results, min_num, max_num, test_label):
@@ -220,8 +220,8 @@ def main():
     time_stamp = time.strftime("%H-%M-%S",time.localtime()) 
 
     for k in range(0,cate_num):
-        #M3_data, M3_label = random_generate_data(ovr_random_data[k], ovr_random_label[k], min_num, max_num, sub_data_size)
-        M3_data, M3_label = prior_generate_data(ovr_prior_data[k], ovr_prior_label[k], min_num, max_num, sub_data_size)
+        M3_data, M3_label = random_generate_data(ovr_random_data[k], ovr_random_label[k], min_num, max_num, sub_data_size)
+        #M3_data, M3_label = prior_generate_data(ovr_prior_data[k], ovr_prior_label[k], min_num, max_num, sub_data_size)
 
         len_train_data = len(train_data)
         len_test_data = len(test_data)
