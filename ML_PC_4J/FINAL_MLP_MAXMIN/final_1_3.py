@@ -102,7 +102,7 @@ def main():
 
     tf.global_variables_initializer().run()
     begin = time.time()
-    for j in range(0,100):
+    for j in range(0,200):
         for i in range(0, batch_num):
             batch_x, batch_y = next_batch(train_data, train_label, batch_size)
             train_step.run({x:batch_x, y_:batch_y})
