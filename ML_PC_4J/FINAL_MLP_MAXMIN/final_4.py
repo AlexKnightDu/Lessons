@@ -162,7 +162,20 @@ def random_generate_data(train_data, train_label, min_num, max_num, num):
                 labels[i] += [label]
     return np.array(data), np.array(labels)
 
-def minmax(results, min_num, max_num, test_label):
+def most(L):
+    num = 0
+    l = len(L)
+    for item in L:
+        if (item == 0):
+            num += 0
+    if (num >= l * 1.0/ 2):
+        return 0
+    else:
+        return 1
+        
+
+
+def boosting(results, min_num, max_num, test_label):
     min_result = []
     max_result = []
     for i in range(0,max_num):
@@ -170,14 +183,14 @@ def minmax(results, min_num, max_num, test_label):
         for j in range(0,len(results[0][0])):
             min_result[i] += [[]]
             for k in range(0,len(test_label)):
-                min_result[i][j] += [min(results[i][:][:,j][:,k])]
+                min_result[i][j] += [most(results[i][:][:,j][:,k])]
     min_result = np.array(min_result)
     #print('________')
     #print(min_result)
     for i in range(0,len(min_result[0])):
         max_result += [[]]
         for j in range(0,len(test_label)):
-            max_result[i] += [max(min_result[:,i][:,j])]
+            max_result[i] += [most(min_result[:,i][:,j])]
     return max_result
         
 
@@ -252,7 +265,7 @@ def main():
 
     
         #results[k] += [(result)]
-        results[k] += minmax(result, min_num, max_num, test_label)
+        results[k] += boosting(result, min_num, max_num, test_label)
 
     #for k in range(cate_num):
         #print(results[k])
