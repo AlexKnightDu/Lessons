@@ -4,7 +4,6 @@
 import tensorflow as tf
 import numpy as np
 import scipy.io as scio
-#import pandas as pd
 import math as ma
 
 def next_batch(data, batch_size, i):
@@ -26,15 +25,22 @@ def normalize(data, min_datum, max_datum):
     for i in range(len(data)):
         data[i] = (data[i] - min_datum) * 1.0 / distance
         
-
+def preprocess(data):
+    result = []
+    return  result
  
 def main():
-    data_file = './data.mat'
-    data = scio.loadmat(data_file)
+    train_data_file = './a9a.txt'
+    test_data_file = './a9a.t'
+
+    train_data = preprocess(np.loadtxt(train_data_file))
+    test_data = preprocess(np.loadtxt(test_data_file))
+
+
 
     sess = tf.InteractiveSession()
 
-    in_units = 310
+    in_units = 123
     h1_units = 300
     h2_units = 200
     h3_units = 100
