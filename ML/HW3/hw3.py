@@ -7,8 +7,8 @@ import numpy as np
 import os
 import time
 
-train_data_file = './a9a.txt'
-test_data_file = './a9a.t'
+train_data_file = './a5a.txt'
+test_data_file = './a5a.t'
 
 kernel_type = ['linear', 'poly', 'rbf', 'sigmoid']
 
@@ -35,12 +35,11 @@ def train(kernel):
         for g in g_para:
             g = round(g, 5)
             for r in r_para:
-                if (kernel == 1):
+                if (str(kernel) == '1'):
                     for d in d_para:
-                        d = d_para
                         param = '-t ' + str(kernel) + ' -c ' + str(c) + ' -g ' + str(g) + ' -r ' + str(r) + ' -d ' + str(d)
                         fout.write(param + ' ')
-                        param = svm_parameter(param + ' -b 1 -m 100')
+                        param = svm_parameter(param + ' -b 1 -m 5000 -q')
                         problem = svm_problem(y,x)
                         model = svm_train(problem, param)
                         p_label, p_acc, p_val = svm_predict(yt, xt, model)
@@ -48,10 +47,10 @@ def train(kernel):
                 else:
                     param = '-t ' + str(kernel) + ' -c ' + str(c) + ' -g ' + str(g) + ' -r ' + str(r)
                     fout.write(param + ' ')
-                    param = svm_parameter(param + ' -b 1 -m 2000')
-                    problem = svm_problem(y[0:10], x[0:10])
+                    param = svm_parameter(param + ' -b 1 -m 5000 -q')
+                    problem = svm_problem(y, x)
                     model = svm_train(problem, param)
-                    p_label, p_acc, p_val = svm_predict(yt[0:10], xt[0:10], model)
+                    p_label, p_acc, p_val = svm_predict(yt, xt, model)
                     fout.write(str(p_acc) + '\n')
     fout.close()
 
