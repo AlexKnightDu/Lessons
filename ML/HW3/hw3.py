@@ -15,7 +15,6 @@ kernel_type = ['linear', 'poly', 'rbf', 'sigmoid']
 feature_num = 123
 
 def train(kernel):
-
     time_stamp = time.strftime("%H-%M-%S",time.localtime())
     fout = open('./result/' + kernel_type[kernel] + '_' + time_stamp + '.out', 'w+')
     print('kernel ' + kernel_type[kernel] + ' started ' + '*' * 20)
@@ -26,7 +25,7 @@ def train(kernel):
     yt, xt = svm_read_problem(test_data_file)
 
     # Cost
-    c_para = list(np.logspace(0,10,11,base=4)/1e4)
+    c_para = list(np.logspace(0,11,12,base=4)/1e4)
     g_para = list(np.logspace(0,6,7,base=2)/(8 * feature_num))
     d_para = list(range(2,7))
     r_para = list(range(0,3,1))
