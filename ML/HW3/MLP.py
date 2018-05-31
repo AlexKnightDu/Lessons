@@ -30,25 +30,37 @@ def main():
                 (200,300,100), (200,400,100),
                 (400,100,40), (400,200,100),
                 (400,200,100,30),(200,400,100,30)]
-    for network in networks:
-        clf = mlpc(activation='relu', alpha=1e-05, batch_size='auto',
-           beta_1=0.9, beta_2=0.999, early_stopping=False,
-           epsilon=1e-08, hidden_layer_sizes=network, learning_rate='constant',
-           learning_rate_init=0.001, max_iter=200, momentum=0.9,
-           nesterovs_momentum=True, power_t=0.5, random_state=1, shuffle=True,
-           solver='lbfgs', tol=0.0001, validation_fraction=0.1, verbose=False,
-           warm_start=False)
+    activations = ['identity','logistic', 'tanh', 'relu']
+    solvers = ['lbfgs','sgd', 'adam']
+    learning_rates = [0.0001, 0.001, 0.01]
+    alphas = [0.00001, 0.0001, 0.001, 0.01, 0.1]
+    learning_rate_setings = ['constant', 'invscaling', 'adaptive']
+    for lr in learning_rates:
+        for lrs in learning_rate_setings:
+            for activation in activations:
+                for solver in solvers:
+                    for alpha in alphas:
+                        for network in networks:
+                            clf = mlpc(activation=activation, alpha=alpha, batch_size='auto',
+                               beta_1=0.9, beta_2=0.999, early_stopping=False,
+                               epsilon=1e-08, hidden_layer_sizes=network, learning_rate=lrs,
+                               learning_rate_init=lr, max_iter=200, momentum=0.9,
+                               nesterovs_momentum=True, power_t=0.5, random_state=1, shuffle=True,
+                               solver=solver, tol=0.0001, validation_fraction=0.1, verbose=False,
+                               warm_start=False)
 
-        x,y,xt,yt = load_data()
-        clf.fit(x,y)
-        predictions = clf.predict(xt)
-        # print(len(xt),len(yt))
-        # score = clf.score(xt, yt)
-        print(classification_report(yt, predictions))
-        fout.write(str(network) + '\n')
-        fout.write(str(classification_report(yt, predictions)))
-        fout.write('\n')
-        fout.flush()
-        # print(score)
+                            x,y,xt,yt = load_data()
+                            clf.fit(x,y)
+                            predictions = clf.predict(xt)
+                            # print(len(xt),len(yt))
+                            # score = clf.score(xt, yt)
+                            param = str(lr) + ' ' + lrs + ' ' + str(network) + ' ' + activation + ' ' + solver + ' ' + str(alpha)
+                            print(param)
+                            print(classification_report(yt, predictions))
+                            fout.write(param + '\n')
+                            fout.write(str(classification_report(yt, predictions)))
+                            fout.write('\n')
+                            fout.flush()
+                            # print(score)
 
 main()
