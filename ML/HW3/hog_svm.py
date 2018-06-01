@@ -16,7 +16,7 @@ def unpickle(file):
         dict = pickle.load(fo, encoding='bytes')
     return dict
 
-def load_data():
+def preprocess_data():
     x = None
     y = []
     for i in range(5):
@@ -31,7 +31,22 @@ def load_data():
     dict = unpickle(test_file_name)
     xt = dict[b'data']
     yt = dict[b'labels']
+
+    fx = get_feat(x[0:10],32)
+    fxt = get_feat(xt[0:10],32)
+    np.savetxt('train_feat.in', fx)
+    np.savetxt('test_feat.in', fxt)
+    np.savetxt('train_labels.in',y[0:10],fmt='%d')
+    np.savetxt('test_labels.in',yt[0:10],fmt='%d')
+    return fx,y,fxt,yt
+
+def load_data():
+    x = np.loadtxt('train_feat.in')
+    xt = np.loadtxt('test_feat.in')
+    y = np.loadtxt('train_labels.in',dtype='int')
+    yt = np.loadtxt('test_labels.in',dtype='int')
     return x,y,xt,yt
+
 
 def rgb2gray(im):
     gray = im[:, :, 0]*0.2989+im[:, :, 1]*0.5870+im[:, :, 2]*0.1140
@@ -45,6 +60,9 @@ def transform(image):
     img = img.reshape(32,32,3)
     return img
 
+
+
+
 def get_feat(images,size):
     feat_images = []
     for image in images:
@@ -55,19 +73,25 @@ def get_feat(images,size):
     return feat_images
 
 
+
 def main():
+    x,y,xt,yt = preprocess_data()
+    print(x)
+    print(y)
     x,y,xt,yt = load_data()
+    print(x)
+    print(y)
 
     print(type(x))
-    fx = get_feat(x,32)
-    fxt = get_feat(xt,32)
 
-    param = '-t 0 -c 4 -b 1'
-    param = svm_parameter(param)#+ ' -b 1 -m 5000 -q')
-    problem = svm_problem(y, x)
-    model = svm_train(problem, param)
-    p_label, p_acc, p_val = svm_predict(yt, xt, model)
-    print(p_acc)
+
+
+    # param = '-t 0 -c 4 -b 1'
+    # param = svm_parameter(param)#+ ' -b 1 -m 5000 -q')
+    # problem = svm_problem(y, x)
+    # model = svm_train(problem, param)
+    # p_label, p_acc, p_val = svm_predict(yt, xt, model)
+    # print(p_acc)
     # fout.write(str(p_acc) + '\n')
     # fout.flush()
 
