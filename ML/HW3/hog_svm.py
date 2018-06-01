@@ -3,7 +3,6 @@ import time
 from PIL import Image
 from skimage.feature import hog
 import os
-import joblib
 import pickle
 import numpy as np
 
@@ -83,6 +82,7 @@ def main():
     print(y)
 
     print(type(x))
+<<<<<<< HEAD
 
 
 
@@ -92,6 +92,17 @@ def main():
     # model = svm_train(problem, param)
     # p_label, p_acc, p_val = svm_predict(yt, xt, model)
     # print(p_acc)
+=======
+    fx = get_feat(x,32)
+    fxt = get_feat(xt,32)
+
+    param = '-t 0 -c 4 -b 1'
+    param = svm_parameter(param)#+ ' -b 1 -m 5000 -q')
+    problem = svm_problem(y, fx)
+    model = svm_train(problem, param)
+    p_label, p_acc, p_val = svm_predict(yt, fxt, model)
+    print(p_acc)
+>>>>>>> a3e8c42c0f193a6df4a96148da3679fc07a1fdd9
     # fout.write(str(p_acc) + '\n')
     # fout.flush()
 
