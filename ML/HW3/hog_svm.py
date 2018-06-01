@@ -43,10 +43,15 @@ def preprocess_data():
     return fx,y,fxt,yt
 
 def load_data():
-    x = np.loadtxt('train_feat.in')
-    xt = np.loadtxt('test_feat.in')
-    y = np.loadtxt('train_labels.in',dtype='int')
-    yt = np.loadtxt('test_labels.in',dtype='int')
+    x = list(np.loadtxt('train_feat.in'))
+    xt = list(np.loadtxt('test_feat.in'))
+    for i in range(len(x)):
+        x[i] = x[i].tolist()
+    for i in range(len(xt)):
+        xt[i] = xt[i].tolist()
+    y = list(np.loadtxt('train_labels.in',dtype='int'))
+    yt = list(np.loadtxt('test_labels.in',dtype='int'))
+    # print(x,y,xt,yt)
     return x,y,xt,yt
 
 
@@ -71,20 +76,23 @@ def get_feat(images,size):
         image = transform(image)
         gray = rgb2gray(image)/255.0
         fea = hog(gray, orientations=12, pixels_per_cell=[8,8], cells_per_block=[2,2], visualise=False, transform_sqrt=True)
-        feat_images += [list(fea)]
+        feat_images += [fea]
     return feat_images
 
 
 def train(kernel):
+    print('kernel ' + kernel_type[kernel] + ' started ' + '*' * 20)
+    print('the process parent id :',os.getppid())
+    print('the process id is :',os.getpid())
     x,y,xt,yt = load_data()
     time_stamp = time.strftime("%H-%M-%S", time.localtime())
     fout = open('./result/HOG_' + kernel_type[kernel] + '_' + time_stamp + '.out', 'w+')
-
-    param = '-t ' + str(kernel) + '-c 4'
+    param = ' -t ' + str(kernel) + ' -c 4'
     param = svm_parameter(param + ' -b 1 -m 10000 -q')
     problem = svm_problem(y, x)
     model = svm_train(problem, param)
     p_label, p_acc, p_val = svm_predict(yt, xt, model)
+
     print(p_acc)
     fout.write(str(p_acc) + '\n')
     fout.flush()
@@ -92,6 +100,8 @@ def train(kernel):
 def main():
     x,y,xt,yt = preprocess_data()
     print(len(x))
+
+    # train(0)
 
     pool = mp.Pool()
     processes = []
