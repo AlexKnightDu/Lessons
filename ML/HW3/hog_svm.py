@@ -5,9 +5,12 @@ from skimage.feature import hog
 import os
 import pickle
 import numpy as np
+import multiprocessing as mp
 
 from svm import *
 from svmutil import *
+
+kernel_type = ['linear', 'poly', 'rbf', 'sigmoid']
 
 
 def unpickle(file):
@@ -31,12 +34,12 @@ def preprocess_data():
     xt = dict[b'data']
     yt = dict[b'labels']
 
-    fx = get_feat(x[0:10],32)
-    fxt = get_feat(xt[0:10],32)
+    fx = get_feat(x,32)
+    fxt = get_feat(xt,32)
     np.savetxt('train_feat.in', fx)
     np.savetxt('test_feat.in', fxt)
-    np.savetxt('train_labels.in',y[0:10],fmt='%d')
-    np.savetxt('test_labels.in',yt[0:10],fmt='%d')
+    np.savetxt('train_labels.in',y,fmt='%d')
+    np.savetxt('test_labels.in',yt,fmt='%d')
     return fx,y,fxt,yt
 
 def load_data():
@@ -68,43 +71,37 @@ def get_feat(images,size):
         image = transform(image)
         gray = rgb2gray(image)/255.0
         fea = hog(gray, orientations=12, pixels_per_cell=[8,8], cells_per_block=[2,2], visualise=False, transform_sqrt=True)
-        feat_images += [fea]
+        feat_images += [list(fea)]
     return feat_images
 
 
+def train(kernel):
+    x,y,xt,yt = load_data()
+    time_stamp = time.strftime("%H-%M-%S", time.localtime())
+    fout = open('./result/HOG_' + kernel_type[kernel] + '_' + time_stamp + '.out', 'w+')
+
+    param = '-t ' + str(kernel) + '-c 4'
+    param = svm_parameter(param + ' -b 1 -m 10000 -q')
+    problem = svm_problem(y, x)
+    model = svm_train(problem, param)
+    p_label, p_acc, p_val = svm_predict(yt, xt, model)
+    print(p_acc)
+    fout.write(str(p_acc) + '\n')
+    fout.flush()
 
 def main():
     x,y,xt,yt = preprocess_data()
-    print(x)
-    print(y)
-    x,y,xt,yt = load_data()
-    print(x)
-    print(y)
+    print(len(x))
 
-    print(type(x))
-<<<<<<< HEAD
+    pool = mp.Pool()
+    processes = []
 
+    kernel_num = 4
+    for i in range(1,kernel_num):
+        processes += [pool.apply_async(train, args=(i,))]
 
-
-    # param = '-t 0 -c 4 -b 1'
-    # param = svm_parameter(param)#+ ' -b 1 -m 5000 -q')
-    # problem = svm_problem(y, x)
-    # model = svm_train(problem, param)
-    # p_label, p_acc, p_val = svm_predict(yt, xt, model)
-    # print(p_acc)
-=======
-    fx = get_feat(x,32)
-    fxt = get_feat(xt,32)
-
-    param = '-t 0 -c 4 -b 1'
-    param = svm_parameter(param)#+ ' -b 1 -m 5000 -q')
-    problem = svm_problem(y, fx)
-    model = svm_train(problem, param)
-    p_label, p_acc, p_val = svm_predict(yt, fxt, model)
-    print(p_acc)
->>>>>>> a3e8c42c0f193a6df4a96148da3679fc07a1fdd9
-    # fout.write(str(p_acc) + '\n')
-    # fout.flush()
+    pool.close()
+    pool.join()
 
 main()
 
