@@ -30,9 +30,9 @@ def main():
                 (200,300,100), (200,400,100),
                 (400,100,40), (400,200,100),
                 (400,200,100,30),(200,400,100,30)]
-    activations = ['identity','logistic', 'tanh', 'relu']
+    activations = ['logistic', 'tanh', 'relu','identity']
     solvers = ['lbfgs','sgd', 'adam']
-    learning_rates = [0.0001, 0.001, 0.01]
+    learning_rates = [0.001, 0.01, 0.0001]
     alphas = [0.00001, 0.0001, 0.001, 0.01, 0.1]
     learning_rate_setings = ['constant', 'invscaling', 'adaptive']
     for lr in learning_rates:
