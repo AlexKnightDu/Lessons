@@ -25,7 +25,7 @@ def train(kernel):
     yt, xt = svm_read_problem(test_data_file)
 
     # Cost
-    c_para = list(np.logspace(0,11,12,base=4)/1e4)
+    c_para = list(np.logspace(0,12,13,base=4)/1e4)
     g_para = list(np.logspace(0,6,7,base=2)/(8 * feature_num))
     d_para = list(range(2,7))
     r_para = list(range(0,3,1))
