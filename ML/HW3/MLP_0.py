@@ -51,7 +51,7 @@ def main():
                         predictions = clf.predict(xt)
                         # print(len(xt),len(yt))
                         # score = clf.score(xt, yt)
-                        param = str(lr) + ' ' + lrs + ' ' + str(network) + ' ' + activation + ' ' + solver + ' ' + str(alpha)
+                        param = str(lr) + ' ' + lrs + ' ' + str(network) + ' ' + activation + ' ' + solver 
                         print(param)
                         print(classification_report(yt, predictions))
                         fout.write(param + '\n')
