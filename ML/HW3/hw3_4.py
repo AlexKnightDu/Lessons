@@ -7,45 +7,45 @@ import numpy as np
 import os
 import time
 
-train_data_file = './protein'
-test_data_file = './protein.t'
+train_data_file = './dna.scale.txt'
+test_data_file = './dna.scale.t'
 
 kernel_type = ['linear', 'poly', 'rbf', 'sigmoid']
 
-feature_num = 357
+feature_num = 180
 
-def svm_read_problem(data_file_name):
-    prob_y = []
-    prob_x = []
-    for line in open(data_file_name):
-        line = line.split(None, 1)
-        # In case an instance with all zero features
-        if len(line) == 1: line += ['']
-        label, features = line
-        xi = {}
-        # print(features)
-        features = features.split()
-        i = 0
-        while i < len(features):
-            ind, val = features[i].split(":")
-            # print(features[i])
-            # print(val == "")
-            # print(float(val))
-            if val == "":
-                val = features[i + 1]
-                i = i + 1
-            # print(val)
-            xi[int(ind)] = float(val)
-            i = i + 1
-        prob_y += [float(label)]
-        prob_x += [xi]
-    print('Finished')
-    return (prob_y, prob_x)
+# def svm_read_problem(data_file_name):
+#     prob_y = []
+#     prob_x = []
+#     for line in open(data_file_name):
+#         line = line.split(None, 1)
+#         # In case an instance with all zero features
+#         if len(line) == 1: line += ['']
+#         label, features = line
+#         xi = {}
+#         # print(features)
+#         features = features.split()
+#         i = 0
+#         while i < len(features):
+#             ind, val = features[i].split(":")
+#             # print(features[i])
+#             # print(val == "")
+#             # print(float(val))
+#             if val == "":
+#                 val = features[i + 1]
+#                 i = i + 1
+#             # print(val)
+#             xi[int(ind)] = float(val)
+#             i = i + 1
+#         prob_y += [float(label)]
+#         prob_x += [xi]
+#     print('Finished')
+#     return (prob_y, prob_x)
 
 
 def train(kernel):
     time_stamp = time.strftime("%H-%M-%S",time.localtime())
-    fout = open('./result_2/' + kernel_type[kernel] + '_' + time_stamp + '.out', 'w+')
+    fout = open('./result_3/' + kernel_type[kernel] + '_' + time_stamp + '.out', 'w+')
     print('kernel ' + kernel_type[kernel] + ' started ' + '*' * 20)
     print('the process parent id :',os.getppid())
     print('the process id is :',os.getpid())
