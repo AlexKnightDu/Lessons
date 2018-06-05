@@ -38,7 +38,7 @@ def main():
             for activation in activations:
                 for solver in solvers:
                     for network in networks:
-                        clf = mlpc(activation=activation, alpha=alpha, batch_size='auto',
+                        clf = mlpc(activation=activation, batch_size='auto',
                            beta_1=0.9, beta_2=0.999, early_stopping=False,
                            epsilon=1e-08, hidden_layer_sizes=network, learning_rate=lrs,
                            learning_rate_init=lr, max_iter=200, momentum=0.9,
