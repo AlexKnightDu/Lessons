@@ -9,8 +9,8 @@ from sklearn.metrics import classification_report,confusion_matrix
 import time
 
 
-train_data_file = './a5a.txt'
-test_data_file = './a5a.t'
+train_data_file = './a2a.txt'
+test_data_file = './a2a.t'
 
 
 
@@ -24,7 +24,7 @@ def load_data():
 def main():
 
     time_stamp = time.strftime("%H-%M-%S",time.localtime())
-    fout = open('./MLP_1/' + 'MLP' + '_' + time_stamp + '.out', 'w+')
+    fout = open('./MLP_2/' + 'MLP' + '_' + time_stamp + '.out', 'w+')
 
     networks = [(100,20), (200,50),
                 (200,300,100), (400,100,40), (400,200,100),
