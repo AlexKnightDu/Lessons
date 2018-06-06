@@ -7,10 +7,10 @@ from sklearn import datasets as ds
 from sklearn.metrics import classification_report,confusion_matrix
 
 import time
-
+import scipy.sparse as sps
 
 train_data_file = './a9a.txt'
-test_data_file = './a9a.txt'
+test_data_file = './a9a.t'
 
 
 
@@ -19,6 +19,7 @@ def load_data():
     xt,yt=ds.load_svmlight_file(test_data_file)
     x.todense()
     xt.todense()
+    x = sps.csr_matrix((x.data, x.indices, x.indptr), shape=(x.get_shape()[0], xt.get_shape()[1]))
     return x,y,xt,yt
 
 def main():
