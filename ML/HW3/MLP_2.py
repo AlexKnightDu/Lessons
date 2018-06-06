@@ -9,8 +9,8 @@ from sklearn.metrics import classification_report,confusion_matrix
 import time
 import scipy.sparse as sps
 
-train_data_file = './splice.txt'
-test_data_file = './splice.t'
+train_data_file = './splice_scale.txt'
+test_data_file = './splice_scale.t'
 
 
 
@@ -25,7 +25,7 @@ def load_data():
 def main():
 
     time_stamp = time.strftime("%H-%M-%S",time.localtime())
-    fout = open('./MLP_3/' + 'MLP' + '_' + time_stamp + '.out', 'w+')
+    fout = open('./MLP_s/s' + 'MLP' + '_' + time_stamp + '.out', 'w+')
 
     networks = [(100,20), (200,50),
                 (100,200,30), (100,300,40)]
