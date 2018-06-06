@@ -142,3 +142,1587 @@ avg / total       0.85      0.85      0.85      2175
 
 avg / total       0.85      0.85      0.85      2175
 
+0.001 constant (100, 200, 30) tanh sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.86      0.84      0.85      1044
+        1.0       0.85      0.87      0.86      1131
+
+avg / total       0.86      0.86      0.86      2175
+
+0.001 constant (100, 300, 40) tanh sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.84      0.85      1044
+        1.0       0.86      0.87      0.86      1131
+
+avg / total       0.85      0.85      0.85      2175
+
+0.001 constant (100, 20) tanh adam
+             precision    recall  f1-score   support
+
+       -1.0       0.86      0.88      0.87      1044
+        1.0       0.89      0.86      0.88      1131
+
+avg / total       0.87      0.87      0.87      2175
+
+0.001 constant (200, 50) tanh adam
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.92      0.90      1044
+        1.0       0.92      0.89      0.90      1131
+
+avg / total       0.90      0.90      0.90      2175
+
+0.001 constant (100, 200, 30) tanh adam
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.88      0.87      1044
+        1.0       0.89      0.88      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.001 constant (100, 300, 40) tanh adam
+             precision    recall  f1-score   support
+
+       -1.0       0.86      0.87      0.86      1044
+        1.0       0.88      0.87      0.87      1131
+
+avg / total       0.87      0.87      0.87      2175
+
+0.001 constant (100, 20) relu lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.90      0.89      1044
+        1.0       0.90      0.89      0.90      1131
+
+avg / total       0.89      0.89      0.89      2175
+
+0.001 constant (200, 50) relu lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.90      0.89      1044
+        1.0       0.91      0.88      0.89      1131
+
+avg / total       0.89      0.89      0.89      2175
+
+0.001 constant (100, 200, 30) relu lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.86      0.89      0.87      1044
+        1.0       0.90      0.86      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.001 constant (100, 300, 40) relu lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.88      0.88      1044
+        1.0       0.89      0.88      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.001 constant (100, 20) relu sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.88      0.86      1044
+        1.0       0.88      0.86      0.87      1131
+
+avg / total       0.87      0.87      0.87      2175
+
+0.001 constant (200, 50) relu sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.86      0.86      0.86      1044
+        1.0       0.87      0.88      0.87      1131
+
+avg / total       0.87      0.87      0.87      2175
+
+0.001 constant (100, 200, 30) relu sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.86      0.86      0.86      1044
+        1.0       0.87      0.87      0.87      1131
+
+avg / total       0.86      0.86      0.86      2175
+
+0.001 constant (100, 300, 40) relu sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.86      0.86      1044
+        1.0       0.87      0.86      0.87      1131
+
+avg / total       0.86      0.86      0.86      2175
+
+0.001 constant (100, 20) relu adam
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.90      0.89      1044
+        1.0       0.90      0.89      0.90      1131
+
+avg / total       0.89      0.89      0.89      2175
+
+0.001 constant (200, 50) relu adam
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.90      0.89      1044
+        1.0       0.90      0.89      0.89      1131
+
+avg / total       0.89      0.89      0.89      2175
+
+0.001 constant (100, 200, 30) relu adam
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.89      0.88      1044
+        1.0       0.89      0.87      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.001 constant (100, 300, 40) relu adam
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.88      0.87      1044
+        1.0       0.89      0.88      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.001 adaptive (100, 20) logistic lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.82      0.86      0.84      1044
+        1.0       0.86      0.83      0.85      1131
+
+avg / total       0.84      0.84      0.84      2175
+
+0.001 adaptive (200, 50) logistic lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.87      0.86      1044
+        1.0       0.88      0.86      0.87      1131
+
+avg / total       0.86      0.86      0.86      2175
+
+0.001 adaptive (100, 200, 30) logistic lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.82      0.90      0.86      1044
+        1.0       0.90      0.82      0.85      1131
+
+avg / total       0.86      0.86      0.86      2175
+
+0.001 adaptive (100, 300, 40) logistic lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.81      0.87      0.84      1044
+        1.0       0.87      0.82      0.84      1131
+
+avg / total       0.84      0.84      0.84      2175
+
+0.001 adaptive (100, 20) logistic sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.33      0.00      0.00      1044
+        1.0       0.52      1.00      0.68      1131
+
+avg / total       0.43      0.52      0.36      2175
+
+0.001 adaptive (200, 50) logistic sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.00      0.00      0.00      1044
+        1.0       0.52      1.00      0.68      1131
+
+avg / total       0.27      0.52      0.36      2175
+
+0.001 adaptive (100, 200, 30) logistic sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.00      0.00      0.00      1044
+        1.0       0.52      1.00      0.68      1131
+
+avg / total       0.27      0.52      0.36      2175
+
+0.001 adaptive (100, 300, 40) logistic sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.00      0.00      0.00      1044
+        1.0       0.52      1.00      0.68      1131
+
+avg / total       0.27      0.52      0.36      2175
+
+0.001 adaptive (100, 20) logistic adam
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.85      0.85      1044
+        1.0       0.86      0.86      0.86      1131
+
+avg / total       0.85      0.85      0.85      2175
+
+0.001 adaptive (200, 50) logistic adam
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.84      0.85      1044
+        1.0       0.86      0.86      0.86      1131
+
+avg / total       0.85      0.85      0.85      2175
+
+0.001 adaptive (100, 200, 30) logistic adam
+             precision    recall  f1-score   support
+
+       -1.0       0.82      0.87      0.85      1044
+        1.0       0.87      0.83      0.85      1131
+
+avg / total       0.85      0.85      0.85      2175
+
+0.001 adaptive (100, 300, 40) logistic adam
+             precision    recall  f1-score   support
+
+       -1.0       0.82      0.87      0.84      1044
+        1.0       0.87      0.82      0.85      1131
+
+avg / total       0.85      0.84      0.84      2175
+
+0.001 adaptive (100, 20) tanh lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.84      0.87      0.86      1044
+        1.0       0.87      0.85      0.86      1131
+
+avg / total       0.86      0.86      0.86      2175
+
+0.001 adaptive (200, 50) tanh lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.88      0.87      1044
+        1.0       0.89      0.87      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.001 adaptive (100, 200, 30) tanh lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.88      0.87      1044
+        1.0       0.89      0.86      0.87      1131
+
+avg / total       0.87      0.87      0.87      2175
+
+0.001 adaptive (100, 300, 40) tanh lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.84      0.86      0.85      1044
+        1.0       0.86      0.85      0.85      1131
+
+avg / total       0.85      0.85      0.85      2175
+
+0.001 adaptive (100, 20) tanh sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.84      0.85      0.84      1044
+        1.0       0.86      0.85      0.86      1131
+
+avg / total       0.85      0.85      0.85      2175
+
+0.001 adaptive (200, 50) tanh sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.84      0.84      1044
+        1.0       0.85      0.86      0.86      1131
+
+avg / total       0.85      0.85      0.85      2175
+
+0.001 adaptive (100, 200, 30) tanh sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.86      0.84      0.85      1044
+        1.0       0.85      0.87      0.86      1131
+
+avg / total       0.86      0.86      0.86      2175
+
+0.001 adaptive (100, 300, 40) tanh sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.84      0.85      1044
+        1.0       0.86      0.87      0.86      1131
+
+avg / total       0.85      0.85      0.85      2175
+
+0.001 adaptive (100, 20) tanh adam
+             precision    recall  f1-score   support
+
+       -1.0       0.86      0.88      0.87      1044
+        1.0       0.89      0.86      0.88      1131
+
+avg / total       0.87      0.87      0.87      2175
+
+0.001 adaptive (200, 50) tanh adam
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.92      0.90      1044
+        1.0       0.92      0.89      0.90      1131
+
+avg / total       0.90      0.90      0.90      2175
+
+0.001 adaptive (100, 200, 30) tanh adam
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.88      0.87      1044
+        1.0       0.89      0.88      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.001 adaptive (100, 300, 40) tanh adam
+             precision    recall  f1-score   support
+
+       -1.0       0.86      0.87      0.86      1044
+        1.0       0.88      0.87      0.87      1131
+
+avg / total       0.87      0.87      0.87      2175
+
+0.001 adaptive (100, 20) relu lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.90      0.89      1044
+        1.0       0.90      0.89      0.90      1131
+
+avg / total       0.89      0.89      0.89      2175
+
+0.001 adaptive (200, 50) relu lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.90      0.89      1044
+        1.0       0.91      0.88      0.89      1131
+
+avg / total       0.89      0.89      0.89      2175
+
+0.001 adaptive (100, 200, 30) relu lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.86      0.89      0.87      1044
+        1.0       0.90      0.86      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.001 adaptive (100, 300, 40) relu lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.88      0.88      1044
+        1.0       0.89      0.88      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.001 adaptive (100, 20) relu sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.88      0.86      1044
+        1.0       0.88      0.86      0.87      1131
+
+avg / total       0.87      0.87      0.87      2175
+
+0.001 adaptive (200, 50) relu sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.86      0.86      0.86      1044
+        1.0       0.87      0.88      0.87      1131
+
+avg / total       0.87      0.87      0.87      2175
+
+0.001 adaptive (100, 200, 30) relu sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.86      0.86      0.86      1044
+        1.0       0.87      0.87      0.87      1131
+
+avg / total       0.86      0.86      0.86      2175
+
+0.001 adaptive (100, 300, 40) relu sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.86      0.86      1044
+        1.0       0.87      0.86      0.87      1131
+
+avg / total       0.86      0.86      0.86      2175
+
+0.001 adaptive (100, 20) relu adam
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.90      0.89      1044
+        1.0       0.90      0.89      0.90      1131
+
+avg / total       0.89      0.89      0.89      2175
+
+0.001 adaptive (200, 50) relu adam
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.90      0.89      1044
+        1.0       0.90      0.89      0.89      1131
+
+avg / total       0.89      0.89      0.89      2175
+
+0.001 adaptive (100, 200, 30) relu adam
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.89      0.88      1044
+        1.0       0.89      0.87      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.001 adaptive (100, 300, 40) relu adam
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.88      0.87      1044
+        1.0       0.89      0.88      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.001 invscaling (100, 20) logistic lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.82      0.86      0.84      1044
+        1.0       0.86      0.83      0.85      1131
+
+avg / total       0.84      0.84      0.84      2175
+
+0.001 invscaling (200, 50) logistic lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.87      0.86      1044
+        1.0       0.88      0.86      0.87      1131
+
+avg / total       0.86      0.86      0.86      2175
+
+0.001 invscaling (100, 200, 30) logistic lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.82      0.90      0.86      1044
+        1.0       0.90      0.82      0.85      1131
+
+avg / total       0.86      0.86      0.86      2175
+
+0.001 invscaling (100, 300, 40) logistic lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.81      0.87      0.84      1044
+        1.0       0.87      0.82      0.84      1131
+
+avg / total       0.84      0.84      0.84      2175
+
+0.001 invscaling (100, 20) logistic sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.48      1.00      0.65      1044
+        1.0       0.00      0.00      0.00      1131
+
+avg / total       0.23      0.48      0.31      2175
+
+0.001 invscaling (200, 50) logistic sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.00      0.00      0.00      1044
+        1.0       0.52      1.00      0.68      1131
+
+avg / total       0.27      0.52      0.36      2175
+
+0.001 invscaling (100, 200, 30) logistic sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.00      0.00      0.00      1044
+        1.0       0.52      1.00      0.68      1131
+
+avg / total       0.27      0.52      0.36      2175
+
+0.001 invscaling (100, 300, 40) logistic sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.00      0.00      0.00      1044
+        1.0       0.52      1.00      0.68      1131
+
+avg / total       0.27      0.52      0.36      2175
+
+0.001 invscaling (100, 20) logistic adam
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.85      0.85      1044
+        1.0       0.86      0.86      0.86      1131
+
+avg / total       0.85      0.85      0.85      2175
+
+0.001 invscaling (200, 50) logistic adam
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.84      0.85      1044
+        1.0       0.86      0.86      0.86      1131
+
+avg / total       0.85      0.85      0.85      2175
+
+0.001 invscaling (100, 200, 30) logistic adam
+             precision    recall  f1-score   support
+
+       -1.0       0.82      0.87      0.85      1044
+        1.0       0.87      0.83      0.85      1131
+
+avg / total       0.85      0.85      0.85      2175
+
+0.001 invscaling (100, 300, 40) logistic adam
+             precision    recall  f1-score   support
+
+       -1.0       0.82      0.87      0.84      1044
+        1.0       0.87      0.82      0.85      1131
+
+avg / total       0.85      0.84      0.84      2175
+
+0.001 invscaling (100, 20) tanh lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.84      0.87      0.86      1044
+        1.0       0.87      0.85      0.86      1131
+
+avg / total       0.86      0.86      0.86      2175
+
+0.001 invscaling (200, 50) tanh lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.88      0.87      1044
+        1.0       0.89      0.87      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.001 invscaling (100, 200, 30) tanh lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.88      0.87      1044
+        1.0       0.89      0.86      0.87      1131
+
+avg / total       0.87      0.87      0.87      2175
+
+0.001 invscaling (100, 300, 40) tanh lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.84      0.86      0.85      1044
+        1.0       0.86      0.85      0.85      1131
+
+avg / total       0.85      0.85      0.85      2175
+
+0.001 invscaling (100, 20) tanh sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.57      0.82      0.67      1044
+        1.0       0.72      0.43      0.54      1131
+
+avg / total       0.65      0.62      0.60      2175
+
+0.001 invscaling (200, 50) tanh sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.50      0.62      0.55      1044
+        1.0       0.54      0.42      0.47      1131
+
+avg / total       0.52      0.52      0.51      2175
+
+0.001 invscaling (100, 200, 30) tanh sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.63      0.42      0.50      1044
+        1.0       0.59      0.78      0.67      1131
+
+avg / total       0.61      0.60      0.59      2175
+
+0.001 invscaling (100, 300, 40) tanh sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.51      0.25      0.34      1044
+        1.0       0.53      0.78      0.63      1131
+
+avg / total       0.52      0.53      0.49      2175
+
+0.001 invscaling (100, 20) tanh adam
+             precision    recall  f1-score   support
+
+       -1.0       0.86      0.88      0.87      1044
+        1.0       0.89      0.86      0.88      1131
+
+avg / total       0.87      0.87      0.87      2175
+
+0.001 invscaling (200, 50) tanh adam
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.92      0.90      1044
+        1.0       0.92      0.89      0.90      1131
+
+avg / total       0.90      0.90      0.90      2175
+
+0.001 invscaling (100, 200, 30) tanh adam
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.88      0.87      1044
+        1.0       0.89      0.88      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.001 invscaling (100, 300, 40) tanh adam
+             precision    recall  f1-score   support
+
+       -1.0       0.86      0.87      0.86      1044
+        1.0       0.88      0.87      0.87      1131
+
+avg / total       0.87      0.87      0.87      2175
+
+0.001 invscaling (100, 20) relu lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.90      0.89      1044
+        1.0       0.90      0.89      0.90      1131
+
+avg / total       0.89      0.89      0.89      2175
+
+0.001 invscaling (200, 50) relu lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.90      0.89      1044
+        1.0       0.91      0.88      0.89      1131
+
+avg / total       0.89      0.89      0.89      2175
+
+0.001 invscaling (100, 200, 30) relu lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.86      0.89      0.87      1044
+        1.0       0.90      0.86      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.001 invscaling (100, 300, 40) relu lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.88      0.88      1044
+        1.0       0.89      0.88      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.001 invscaling (100, 20) relu sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.52      0.92      0.67      1044
+        1.0       0.75      0.23      0.35      1131
+
+avg / total       0.64      0.56      0.50      2175
+
+0.001 invscaling (200, 50) relu sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.48      0.34      0.40      1044
+        1.0       0.52      0.66      0.58      1131
+
+avg / total       0.50      0.51      0.50      2175
+
+0.001 invscaling (100, 200, 30) relu sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.59      0.32      0.41      1044
+        1.0       0.56      0.79      0.66      1131
+
+avg / total       0.57      0.57      0.54      2175
+
+0.001 invscaling (100, 300, 40) relu sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.07      0.00      0.00      1044
+        1.0       0.52      0.99      0.68      1131
+
+avg / total       0.30      0.51      0.35      2175
+
+0.001 invscaling (100, 20) relu adam
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.90      0.89      1044
+        1.0       0.90      0.89      0.90      1131
+
+avg / total       0.89      0.89      0.89      2175
+
+0.001 invscaling (200, 50) relu adam
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.90      0.89      1044
+        1.0       0.90      0.89      0.89      1131
+
+avg / total       0.89      0.89      0.89      2175
+
+0.001 invscaling (100, 200, 30) relu adam
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.89      0.88      1044
+        1.0       0.89      0.87      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.001 invscaling (100, 300, 40) relu adam
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.88      0.87      1044
+        1.0       0.89      0.88      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.01 constant (100, 20) logistic lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.82      0.86      0.84      1044
+        1.0       0.86      0.83      0.85      1131
+
+avg / total       0.84      0.84      0.84      2175
+
+0.01 constant (200, 50) logistic lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.87      0.86      1044
+        1.0       0.88      0.86      0.87      1131
+
+avg / total       0.86      0.86      0.86      2175
+
+0.01 constant (100, 200, 30) logistic lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.82      0.90      0.86      1044
+        1.0       0.90      0.82      0.85      1131
+
+avg / total       0.86      0.86      0.86      2175
+
+0.01 constant (100, 300, 40) logistic lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.81      0.87      0.84      1044
+        1.0       0.87      0.82      0.84      1131
+
+avg / total       0.84      0.84      0.84      2175
+
+0.01 constant (100, 20) logistic sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.00      0.00      0.00      1044
+        1.0       0.52      1.00      0.68      1131
+
+avg / total       0.27      0.52      0.36      2175
+
+0.01 constant (200, 50) logistic sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.00      0.00      0.00      1044
+        1.0       0.52      1.00      0.68      1131
+
+avg / total       0.27      0.52      0.36      2175
+
+0.01 constant (100, 200, 30) logistic sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.00      0.00      0.00      1044
+        1.0       0.52      1.00      0.68      1131
+
+avg / total       0.27      0.52      0.36      2175
+
+0.01 constant (100, 300, 40) logistic sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.00      0.00      0.00      1044
+        1.0       0.52      1.00      0.68      1131
+
+avg / total       0.27      0.52      0.36      2175
+
+0.01 constant (100, 20) logistic adam
+             precision    recall  f1-score   support
+
+       -1.0       0.84      0.88      0.86      1044
+        1.0       0.88      0.85      0.87      1131
+
+avg / total       0.86      0.86      0.86      2175
+
+0.01 constant (200, 50) logistic adam
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.89      0.87      1044
+        1.0       0.89      0.85      0.87      1131
+
+avg / total       0.87      0.87      0.87      2175
+
+0.01 constant (100, 200, 30) logistic adam
+             precision    recall  f1-score   support
+
+       -1.0       0.82      0.88      0.85      1044
+        1.0       0.88      0.82      0.85      1131
+
+avg / total       0.85      0.85      0.85      2175
+
+0.01 constant (100, 300, 40) logistic adam
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.93      0.90      1044
+        1.0       0.93      0.88      0.90      1131
+
+avg / total       0.90      0.90      0.90      2175
+
+0.01 constant (100, 20) tanh lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.84      0.87      0.86      1044
+        1.0       0.87      0.85      0.86      1131
+
+avg / total       0.86      0.86      0.86      2175
+
+0.01 constant (200, 50) tanh lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.88      0.87      1044
+        1.0       0.89      0.87      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.01 constant (100, 200, 30) tanh lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.88      0.87      1044
+        1.0       0.89      0.86      0.87      1131
+
+avg / total       0.87      0.87      0.87      2175
+
+0.01 constant (100, 300, 40) tanh lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.84      0.86      0.85      1044
+        1.0       0.86      0.85      0.85      1131
+
+avg / total       0.85      0.85      0.85      2175
+
+0.01 constant (100, 20) tanh sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.86      0.85      1044
+        1.0       0.87      0.85      0.86      1131
+
+avg / total       0.86      0.86      0.86      2175
+
+0.01 constant (200, 50) tanh sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.92      0.89      1044
+        1.0       0.92      0.88      0.90      1131
+
+avg / total       0.90      0.90      0.90      2175
+
+0.01 constant (100, 200, 30) tanh sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.86      0.88      0.87      1044
+        1.0       0.89      0.86      0.87      1131
+
+avg / total       0.87      0.87      0.87      2175
+
+0.01 constant (100, 300, 40) tanh sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.86      0.86      1044
+        1.0       0.87      0.86      0.87      1131
+
+avg / total       0.86      0.86      0.86      2175
+
+0.01 constant (100, 20) tanh adam
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.88      0.87      1044
+        1.0       0.89      0.86      0.87      1131
+
+avg / total       0.87      0.87      0.87      2175
+
+0.01 constant (200, 50) tanh adam
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.91      0.89      1044
+        1.0       0.91      0.88      0.89      1131
+
+avg / total       0.89      0.89      0.89      2175
+
+0.01 constant (100, 200, 30) tanh adam
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.87      0.87      1044
+        1.0       0.88      0.88      0.88      1131
+
+avg / total       0.87      0.87      0.87      2175
+
+0.01 constant (100, 300, 40) tanh adam
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.88      0.87      1044
+        1.0       0.89      0.87      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.01 constant (100, 20) relu lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.90      0.89      1044
+        1.0       0.90      0.89      0.90      1131
+
+avg / total       0.89      0.89      0.89      2175
+
+0.01 constant (200, 50) relu lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.90      0.89      1044
+        1.0       0.91      0.88      0.89      1131
+
+avg / total       0.89      0.89      0.89      2175
+
+0.01 constant (100, 200, 30) relu lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.86      0.89      0.87      1044
+        1.0       0.90      0.86      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.01 constant (100, 300, 40) relu lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.88      0.88      1044
+        1.0       0.89      0.88      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.01 constant (100, 20) relu sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.90      0.89      1044
+        1.0       0.90      0.88      0.89      1131
+
+avg / total       0.89      0.89      0.89      2175
+
+0.01 constant (200, 50) relu sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.89      0.90      0.90      1044
+        1.0       0.91      0.90      0.90      1131
+
+avg / total       0.90      0.90      0.90      2175
+
+0.01 constant (100, 200, 30) relu sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.86      0.89      0.87      1044
+        1.0       0.89      0.87      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.01 constant (100, 300, 40) relu sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.88      0.88      1044
+        1.0       0.89      0.88      0.89      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.01 constant (100, 20) relu adam
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.91      0.89      1044
+        1.0       0.91      0.89      0.90      1131
+
+avg / total       0.90      0.90      0.90      2175
+
+0.01 constant (200, 50) relu adam
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.89      0.88      1044
+        1.0       0.90      0.88      0.89      1131
+
+avg / total       0.89      0.89      0.89      2175
+
+0.01 constant (100, 200, 30) relu adam
+             precision    recall  f1-score   support
+
+       -1.0       0.84      0.90      0.87      1044
+        1.0       0.90      0.85      0.87      1131
+
+avg / total       0.87      0.87      0.87      2175
+
+0.01 constant (100, 300, 40) relu adam
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.89      0.88      1044
+        1.0       0.89      0.89      0.89      1131
+
+avg / total       0.89      0.89      0.89      2175
+
+0.01 adaptive (100, 20) logistic lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.82      0.86      0.84      1044
+        1.0       0.86      0.83      0.85      1131
+
+avg / total       0.84      0.84      0.84      2175
+
+0.01 adaptive (200, 50) logistic lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.87      0.86      1044
+        1.0       0.88      0.86      0.87      1131
+
+avg / total       0.86      0.86      0.86      2175
+
+0.01 adaptive (100, 200, 30) logistic lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.82      0.90      0.86      1044
+        1.0       0.90      0.82      0.85      1131
+
+avg / total       0.86      0.86      0.86      2175
+
+0.01 adaptive (100, 300, 40) logistic lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.81      0.87      0.84      1044
+        1.0       0.87      0.82      0.84      1131
+
+avg / total       0.84      0.84      0.84      2175
+
+0.01 adaptive (100, 20) logistic sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.00      0.00      0.00      1044
+        1.0       0.52      1.00      0.68      1131
+
+avg / total       0.27      0.52      0.36      2175
+
+0.01 adaptive (200, 50) logistic sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.00      0.00      0.00      1044
+        1.0       0.52      1.00      0.68      1131
+
+avg / total       0.27      0.52      0.36      2175
+
+0.01 adaptive (100, 200, 30) logistic sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.00      0.00      0.00      1044
+        1.0       0.52      1.00      0.68      1131
+
+avg / total       0.27      0.52      0.36      2175
+
+0.01 adaptive (100, 300, 40) logistic sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.00      0.00      0.00      1044
+        1.0       0.52      1.00      0.68      1131
+
+avg / total       0.27      0.52      0.36      2175
+
+0.01 adaptive (100, 20) logistic adam
+             precision    recall  f1-score   support
+
+       -1.0       0.84      0.88      0.86      1044
+        1.0       0.88      0.85      0.87      1131
+
+avg / total       0.86      0.86      0.86      2175
+
+0.01 adaptive (200, 50) logistic adam
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.89      0.87      1044
+        1.0       0.89      0.85      0.87      1131
+
+avg / total       0.87      0.87      0.87      2175
+
+0.01 adaptive (100, 200, 30) logistic adam
+             precision    recall  f1-score   support
+
+       -1.0       0.82      0.88      0.85      1044
+        1.0       0.88      0.82      0.85      1131
+
+avg / total       0.85      0.85      0.85      2175
+
+0.01 adaptive (100, 300, 40) logistic adam
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.93      0.90      1044
+        1.0       0.93      0.88      0.90      1131
+
+avg / total       0.90      0.90      0.90      2175
+
+0.01 adaptive (100, 20) tanh lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.84      0.87      0.86      1044
+        1.0       0.87      0.85      0.86      1131
+
+avg / total       0.86      0.86      0.86      2175
+
+0.01 adaptive (200, 50) tanh lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.88      0.87      1044
+        1.0       0.89      0.87      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.01 adaptive (100, 200, 30) tanh lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.88      0.87      1044
+        1.0       0.89      0.86      0.87      1131
+
+avg / total       0.87      0.87      0.87      2175
+
+0.01 adaptive (100, 300, 40) tanh lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.84      0.86      0.85      1044
+        1.0       0.86      0.85      0.85      1131
+
+avg / total       0.85      0.85      0.85      2175
+
+0.01 adaptive (100, 20) tanh sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.86      0.85      1044
+        1.0       0.87      0.85      0.86      1131
+
+avg / total       0.86      0.86      0.86      2175
+
+0.01 adaptive (200, 50) tanh sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.92      0.89      1044
+        1.0       0.92      0.88      0.90      1131
+
+avg / total       0.90      0.90      0.90      2175
+
+0.01 adaptive (100, 200, 30) tanh sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.86      0.88      0.87      1044
+        1.0       0.89      0.86      0.87      1131
+
+avg / total       0.87      0.87      0.87      2175
+
+0.01 adaptive (100, 300, 40) tanh sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.86      0.86      1044
+        1.0       0.87      0.86      0.87      1131
+
+avg / total       0.86      0.86      0.86      2175
+
+0.01 adaptive (100, 20) tanh adam
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.88      0.87      1044
+        1.0       0.89      0.86      0.87      1131
+
+avg / total       0.87      0.87      0.87      2175
+
+0.01 adaptive (200, 50) tanh adam
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.91      0.89      1044
+        1.0       0.91      0.88      0.89      1131
+
+avg / total       0.89      0.89      0.89      2175
+
+0.01 adaptive (100, 200, 30) tanh adam
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.87      0.87      1044
+        1.0       0.88      0.88      0.88      1131
+
+avg / total       0.87      0.87      0.87      2175
+
+0.01 adaptive (100, 300, 40) tanh adam
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.88      0.87      1044
+        1.0       0.89      0.87      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.01 adaptive (100, 20) relu lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.90      0.89      1044
+        1.0       0.90      0.89      0.90      1131
+
+avg / total       0.89      0.89      0.89      2175
+
+0.01 adaptive (200, 50) relu lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.90      0.89      1044
+        1.0       0.91      0.88      0.89      1131
+
+avg / total       0.89      0.89      0.89      2175
+
+0.01 adaptive (100, 200, 30) relu lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.86      0.89      0.87      1044
+        1.0       0.90      0.86      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.01 adaptive (100, 300, 40) relu lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.88      0.88      1044
+        1.0       0.89      0.88      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.01 adaptive (100, 20) relu sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.90      0.89      1044
+        1.0       0.90      0.89      0.89      1131
+
+avg / total       0.89      0.89      0.89      2175
+
+0.01 adaptive (200, 50) relu sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.89      0.90      0.90      1044
+        1.0       0.91      0.90      0.90      1131
+
+avg / total       0.90      0.90      0.90      2175
+
+0.01 adaptive (100, 200, 30) relu sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.86      0.89      0.87      1044
+        1.0       0.89      0.87      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.01 adaptive (100, 300, 40) relu sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.88      0.88      1044
+        1.0       0.89      0.88      0.89      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.01 adaptive (100, 20) relu adam
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.91      0.89      1044
+        1.0       0.91      0.89      0.90      1131
+
+avg / total       0.90      0.90      0.90      2175
+
+0.01 adaptive (200, 50) relu adam
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.89      0.88      1044
+        1.0       0.90      0.88      0.89      1131
+
+avg / total       0.89      0.89      0.89      2175
+
+0.01 adaptive (100, 200, 30) relu adam
+             precision    recall  f1-score   support
+
+       -1.0       0.84      0.90      0.87      1044
+        1.0       0.90      0.85      0.87      1131
+
+avg / total       0.87      0.87      0.87      2175
+
+0.01 adaptive (100, 300, 40) relu adam
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.89      0.88      1044
+        1.0       0.89      0.89      0.89      1131
+
+avg / total       0.89      0.89      0.89      2175
+
+0.01 invscaling (100, 20) logistic lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.82      0.86      0.84      1044
+        1.0       0.86      0.83      0.85      1131
+
+avg / total       0.84      0.84      0.84      2175
+
+0.01 invscaling (200, 50) logistic lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.87      0.86      1044
+        1.0       0.88      0.86      0.87      1131
+
+avg / total       0.86      0.86      0.86      2175
+
+0.01 invscaling (100, 200, 30) logistic lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.82      0.90      0.86      1044
+        1.0       0.90      0.82      0.85      1131
+
+avg / total       0.86      0.86      0.86      2175
+
+0.01 invscaling (100, 300, 40) logistic lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.81      0.87      0.84      1044
+        1.0       0.87      0.82      0.84      1131
+
+avg / total       0.84      0.84      0.84      2175
+
+0.01 invscaling (100, 20) logistic sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.66      0.54      0.59      1044
+        1.0       0.64      0.74      0.69      1131
+
+avg / total       0.65      0.65      0.64      2175
+
+0.01 invscaling (200, 50) logistic sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.48      1.00      0.65      1044
+        1.0       0.00      0.00      0.00      1131
+
+avg / total       0.23      0.48      0.31      2175
+
+0.01 invscaling (100, 200, 30) logistic sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.00      0.00      0.00      1044
+        1.0       0.52      1.00      0.68      1131
+
+avg / total       0.27      0.52      0.36      2175
+
+0.01 invscaling (100, 300, 40) logistic sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.48      1.00      0.65      1044
+        1.0       0.00      0.00      0.00      1131
+
+avg / total       0.23      0.48      0.31      2175
+
+0.01 invscaling (100, 20) logistic adam
+             precision    recall  f1-score   support
+
+       -1.0       0.84      0.88      0.86      1044
+        1.0       0.88      0.85      0.87      1131
+
+avg / total       0.86      0.86      0.86      2175
+
+0.01 invscaling (200, 50) logistic adam
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.89      0.87      1044
+        1.0       0.89      0.85      0.87      1131
+
+avg / total       0.87      0.87      0.87      2175
+
+0.01 invscaling (100, 200, 30) logistic adam
+             precision    recall  f1-score   support
+
+       -1.0       0.82      0.88      0.85      1044
+        1.0       0.88      0.82      0.85      1131
+
+avg / total       0.85      0.85      0.85      2175
+
+0.01 invscaling (100, 300, 40) logistic adam
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.93      0.90      1044
+        1.0       0.93      0.88      0.90      1131
+
+avg / total       0.90      0.90      0.90      2175
+
+0.01 invscaling (100, 20) tanh lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.84      0.87      0.86      1044
+        1.0       0.87      0.85      0.86      1131
+
+avg / total       0.86      0.86      0.86      2175
+
+0.01 invscaling (200, 50) tanh lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.88      0.87      1044
+        1.0       0.89      0.87      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.01 invscaling (100, 200, 30) tanh lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.88      0.87      1044
+        1.0       0.89      0.86      0.87      1131
+
+avg / total       0.87      0.87      0.87      2175
+
+0.01 invscaling (100, 300, 40) tanh lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.84      0.86      0.85      1044
+        1.0       0.86      0.85      0.85      1131
+
+avg / total       0.85      0.85      0.85      2175
+
+0.01 invscaling (100, 20) tanh sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.67      0.85      0.75      1044
+        1.0       0.81      0.61      0.70      1131
+
+avg / total       0.74      0.73      0.72      2175
+
+0.01 invscaling (200, 50) tanh sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.68      0.89      0.77      1044
+        1.0       0.85      0.62      0.72      1131
+
+avg / total       0.77      0.75      0.74      2175
+
+0.01 invscaling (100, 200, 30) tanh sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.73      0.85      0.79      1044
+        1.0       0.84      0.71      0.77      1131
+
+avg / total       0.79      0.78      0.78      2175
+
+0.01 invscaling (100, 300, 40) tanh sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.72      0.87      0.79      1044
+        1.0       0.85      0.69      0.76      1131
+
+avg / total       0.79      0.78      0.78      2175
+
+0.01 invscaling (100, 20) tanh adam
+             precision    recall  f1-score   support
+
+       -1.0       0.85      0.88      0.87      1044
+        1.0       0.89      0.86      0.87      1131
+
+avg / total       0.87      0.87      0.87      2175
+
+0.01 invscaling (200, 50) tanh adam
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.91      0.89      1044
+        1.0       0.91      0.88      0.89      1131
+
+avg / total       0.89      0.89      0.89      2175
+
+0.01 invscaling (100, 200, 30) tanh adam
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.87      0.87      1044
+        1.0       0.88      0.88      0.88      1131
+
+avg / total       0.87      0.87      0.87      2175
+
+0.01 invscaling (100, 300, 40) tanh adam
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.88      0.87      1044
+        1.0       0.89      0.87      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.01 invscaling (100, 20) relu lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.90      0.89      1044
+        1.0       0.90      0.89      0.90      1131
+
+avg / total       0.89      0.89      0.89      2175
+
+0.01 invscaling (200, 50) relu lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.90      0.89      1044
+        1.0       0.91      0.88      0.89      1131
+
+avg / total       0.89      0.89      0.89      2175
+
+0.01 invscaling (100, 200, 30) relu lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.86      0.89      0.87      1044
+        1.0       0.90      0.86      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.01 invscaling (100, 300, 40) relu lbfgs
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.88      0.88      1044
+        1.0       0.89      0.88      0.88      1131
+
+avg / total       0.88      0.88      0.88      2175
+
+0.01 invscaling (100, 20) relu sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.64      0.69      0.66      1044
+        1.0       0.69      0.64      0.66      1131
+
+avg / total       0.67      0.66      0.66      2175
+
+0.01 invscaling (200, 50) relu sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.66      0.63      0.65      1044
+        1.0       0.67      0.70      0.69      1131
+
+avg / total       0.67      0.67      0.67      2175
+
+0.01 invscaling (100, 200, 30) relu sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.66      0.58      0.62      1044
+        1.0       0.65      0.72      0.68      1131
+
+avg / total       0.65      0.65      0.65      2175
+
+0.01 invscaling (100, 300, 40) relu sgd
+             precision    recall  f1-score   support
+
+       -1.0       0.57      0.37      0.45      1044
+        1.0       0.56      0.75      0.64      1131
+
+avg / total       0.57      0.57      0.55      2175
+
+0.01 invscaling (100, 20) relu adam
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.91      0.89      1044
+        1.0       0.91      0.89      0.90      1131
+
+avg / total       0.90      0.90      0.90      2175
+
+0.01 invscaling (200, 50) relu adam
+             precision    recall  f1-score   support
+
+       -1.0       0.87      0.89      0.88      1044
+        1.0       0.90      0.88      0.89      1131
+
+avg / total       0.89      0.89      0.89      2175
+
+0.01 invscaling (100, 200, 30) relu adam
+             precision    recall  f1-score   support
+
+       -1.0       0.84      0.90      0.87      1044
+        1.0       0.90      0.85      0.87      1131
+
+avg / total       0.87      0.87      0.87      2175
+
+0.01 invscaling (100, 300, 40) relu adam
+             precision    recall  f1-score   support
+
+       -1.0       0.88      0.89      0.88      1044
+        1.0       0.89      0.89      0.89      1131
+
+avg / total       0.89      0.89      0.89      2175
+
