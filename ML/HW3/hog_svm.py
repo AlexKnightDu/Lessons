@@ -6,6 +6,7 @@ import os
 import pickle
 import numpy as np
 import multiprocessing as mp
+from sklearn.metrics import classification_report,confusion_matrix
 
 from svm import *
 from svmutil import *
@@ -87,14 +88,15 @@ def train(kernel):
     x,y,xt,yt = load_data()
     time_stamp = time.strftime("%H-%M-%S", time.localtime())
     fout = open('./result/HOG_' + kernel_type[kernel] + '_' + time_stamp + '.out', 'w+')
-    param = ' -t ' + str(kernel) + ' -c 4'
+    param = ' -t ' + str(kernel) + ' -c 4 -d 6'
     param = svm_parameter(param + ' -b 1 -m 10000 -q')
     problem = svm_problem(y, x)
     model = svm_train(problem, param)
     p_label, p_acc, p_val = svm_predict(yt, xt, model)
-
+    r = classification_report(yt, p_label)
     print(p_acc)
-    fout.write(str(p_acc) + '\n')
+    print(r)
+    fout.write(str(p_acc) + str(r) + '\n')
     fout.flush()
 
 def main():
