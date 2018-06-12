@@ -25,9 +25,10 @@ def load_data():
     xt = sps.csr_matrix((xt.data, xt.indices, xt.indptr), shape=(xt.get_shape()[0], 123))
     return x,y,xt,yt
 
-def train(k,fout):
+def train(k):
+    fout = open('./' + 'knn' + '_' + str(k) + '.out', 'w+')
     x,y,xt,yt = load_data()
-
+    print('test')
     clf = KNeighborsClassifier(n_neighbors=k)
     clf.fit(x.toarray(), y)
     predictions = clf.predict(xt.toarray())
@@ -36,11 +37,12 @@ def train(k,fout):
     fout.write(str(k) + '\n' + str(classification_report(yt, predictions)))
     fout.write('\n')
     fout.flush()
+    fout.close()
 
 
 
 def main():
-    fout = open('./' + 'knn' + '_d' + '.out', 'w+')
+
     pool = mp.Pool()
     processes = []
     result = []
@@ -48,10 +50,10 @@ def main():
     k_num = 14
 
     for i in range(2,k_num):
-        processes += [pool.apply_async(train, args=(i,fout))]
+        processes += [pool.apply_async(train, args=(i))]
 
     pool.close()
     pool.join()
-    fout.close()
+
 
 main()
