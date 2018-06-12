@@ -7,7 +7,7 @@ from sklearn.neural_network import MLPClassifier as mlpc
 from sklearn import datasets as ds
 from sklearn.metrics import classification_report,confusion_matrix
 from sklearn.neighbors import KNeighborsClassifier
-import multiprocessing as mp
+
 import time
 import scipy.sparse as sps
 
@@ -25,35 +25,22 @@ def load_data():
     xt = sps.csr_matrix((xt.data, xt.indices, xt.indptr), shape=(xt.get_shape()[0], 123))
     return x,y,xt,yt
 
-def train(k):
-    fout = open('./' + 'knn' + '_' + str(k) + '.out', 'w+')
-    x,y,xt,yt = load_data()
-    print('test')
-    clf = KNeighborsClassifier(n_neighbors=k)
-    clf.fit(x.toarray(), y)
-    predictions = clf.predict(xt.toarray())
-    print(classification_report(yt, predictions))
-
-    fout.write(str(k) + '\n' + str(classification_report(yt, predictions)))
-    fout.write('\n')
-    fout.flush()
-    fout.close()
-
-
-
 def main():
+    x,y,xt,yt = load_data()
+    fout = open('./' + 'knn' + '_' + '.out', 'w+')
+    parameter_values = list(range(1, 21))
+    # 对每个k值的准确率进行计算
+    for k in parameter_values:
+        # 创建KNN分类器
+        clf = KNeighborsClassifier(n_neighbors=k)
+        clf.fit(x.toarray(), y)
+        predictions = clf.predict(xt.toarray())
+        print(classification_report(yt, predictions))
 
-    pool = mp.Pool()
-    processes = []
-    result = []
-
-    k_num = 14
-
-    for i in range(2,k_num):
-        processes += [pool.apply_async(train, args=(i))]
-
-    pool.close()
-    pool.join()
+        fout.write(str(classification_report(yt, predictions)))
+        fout.write('\n')
+        fout.flush()
+    fout.close()
 
 
 main()
