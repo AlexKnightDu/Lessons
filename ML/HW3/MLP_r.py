@@ -7,6 +7,7 @@ from sklearn.neural_network import MLPClassifier as mlpc
 from sklearn import datasets as ds
 from sklearn.metrics import classification_report,confusion_matrix
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
 
 import time
 import scipy.sparse as sps
@@ -27,20 +28,32 @@ def load_data():
 
 def main():
     x,y,xt,yt = load_data()
-    fout = open('./' + 'knn' + '_' + '.out', 'w+')
-    parameter_values = list(range(1, 21))
+    # fout = open('./' + 'knn' + '_' + '.out', 'w+')
+    # parameter_values = list(range(1, 21))
     # 对每个k值的准确率进行计算
-    for k in parameter_values:
-        # 创建KNN分类器
-        clf = KNeighborsClassifier(n_neighbors=k)
-        clf.fit(x.toarray(), y)
-        predictions = clf.predict(xt.toarray())
-        print(classification_report(yt, predictions))
+    # for k in parameter_values:
+    #     # 创建KNN分类器
+    #     clf = KNeighborsClassifier(n_neighbors=k)
+    #     clf.fit(x.toarray(), y)
+    #     predictions = clf.predict(xt.toarray())
+    #     print(classification_report(yt, predictions))
+    #
+    #     fout.write(str(classification_report(yt, predictions)))
+    #     fout.write('\n')
+    #     fout.flush()
+    # fout.close()
 
-        fout.write(str(classification_report(yt, predictions)))
-        fout.write('\n')
-        fout.flush()
-    fout.close()
+        # 创建KNN分类器
+    clf = DecisionTreeClassifier(max_depth=8)
+    clf.fit(x.toarray(), y)
+    predictions = clf.predict(xt.toarray())
+    print(classification_report(yt, predictions))
+
+    # fout.write(str(classification_report(yt, predictions)))
+    # fout.write('\n')
+    # fout.flush()
+    # fout.close()
+
 
 
 main()

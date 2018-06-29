@@ -7,8 +7,8 @@ import numpy as np
 import os
 import time
 
-train_data_file = './a5a.txt'
-test_data_file = './a5a.t'
+train_data_file = './a9a.txt'
+test_data_file = './a9a.t'
 
 kernel_type = ['linear', 'poly', 'rbf', 'sigmoid']
 
@@ -69,10 +69,5 @@ def main():
     pool.close()
     pool.join()
 
-    # for i in range(0, kernel_num):
-        # temp = processes[i].get()
-        # result += [temp]
-
-    # print(result)
 
 main()

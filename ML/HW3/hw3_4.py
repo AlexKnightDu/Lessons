@@ -88,21 +88,15 @@ def train(kernel):
 def main():
     pool = mp.Pool()
     processes = []
-    result = []
 
     kernel_num = 4
 
-    # train(0)
     for i in range(kernel_num):
         processes += [pool.apply_async(train, args=(i,))]
 
     pool.close()
     pool.join()
 
-    # for i in range(0, kernel_num):
-        # temp = processes[i].get()
-        # result += [temp]
 
-    # print(result)
 
 main()

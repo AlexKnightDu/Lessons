@@ -109,7 +109,7 @@ def main():
     processes = []
 
     kernel_num = 4
-    for i in range(1,kernel_num):
+    for i in range(0,kernel_num):
         processes += [pool.apply_async(train, args=(i,))]
 
     pool.close()

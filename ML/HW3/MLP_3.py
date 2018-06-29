@@ -49,8 +49,6 @@ def main():
                         x,y,xt,yt = load_data()
                         clf.fit(x,y)
                         predictions = clf.predict(xt)
-                        # print(len(xt),len(yt))
-                        # score = clf.score(xt, yt)
                         param = str(lr) + ' ' + lrs + ' ' + str(network) + ' ' + activation + ' ' + solver
                         print(param)
                         print(classification_report(yt, predictions))
@@ -58,6 +56,5 @@ def main():
                         fout.write(str(classification_report(yt, predictions)))
                         fout.write('\n')
                         fout.flush()
-                            # print(score)
 
 main()

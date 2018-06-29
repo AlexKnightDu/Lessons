@@ -7,8 +7,8 @@ import numpy as np
 import os
 import time
 
-train_data_file = './splice_scale.txt'
-test_data_file = './splice_scale.t'
+train_data_file = './splice_scale_loss.txt'
+test_data_file = './splice_scale_loss.t'
 
 kernel_type = ['linear', 'poly', 'rbf', 'sigmoid']
 
@@ -16,7 +16,7 @@ feature_num = 60
 
 def train(kernel):
     time_stamp = time.strftime("%H-%M-%S",time.localtime())
-    fout = open('./result_1/s' + kernel_type[kernel] + '_' + time_stamp + '.out', 'w+')
+    fout = open('./result_1/2l' + kernel_type[kernel] + '_' + time_stamp + '.out', 'w+')
     print('kernel ' + kernel_type[kernel] + ' started ' + '*' * 20)
     print('the process parent id :',os.getppid())
     print('the process id is :',os.getpid())
@@ -59,22 +59,13 @@ def train(kernel):
 def main():
     pool = mp.Pool()
     processes = []
-    result = []
 
     kernel_num = 4
 
-    # train(0)
     for i in range(kernel_num):
         processes += [pool.apply_async(train, args=(i,))]
 
     pool.close()
     pool.join()
-
-    # for i in ran
-    # ge(0, kernel_num):
-        # temp = processes[i].get()
-        # result += [temp]
-
-    # print(result)
 
 main()
