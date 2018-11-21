@@ -1,7 +1,5 @@
 # <center> 第三次作业 </center>
 
-<center> *杜连宇 5140309005* </center>
-<br></br> 
 <center> ![](hw3.png) </center> 
 
 ##### Solution
