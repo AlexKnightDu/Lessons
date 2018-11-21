@@ -1,7 +1,7 @@
 # <center>  Homework 1 </center>
 
 #### 1. k-mean vs GMM
-<center> ![](prob1.png) </center>
+![](prob1.png) 
 #### Solution
 *Description:* Compared with k-mean, GMM algorithm tend to have more calculation in every iteration. To avoid this it's easy to think out a variant algorithm that makes a trade-off between k-mean and GMM: first use k-mean to get a nearly convergence than use GMM to get a better result.That algorithm is too simple to write, so I tried to think in another way.     
 The difference between k-mean and GMM is that one is hard-clustering and the other is soft-clustering. So I wonder if it's possible to combine the soft-clustering with k-mean algorithm by allowing a single point belongs to many cluster and each with different weight. After some thinking and searching I get the following variant algorithm (Actually there is such a algorithm called ''Fuzzy C-means Clustering'' and referred this algorithm to it).         
@@ -44,7 +44,7 @@ Therefore we can continue this iteration to minimize the J until $\| R^{(i+1)} -
 
 
 #### 2. k-mean vs CL
-<center> ![](prob2.png) </center>
+![](prob2.png) 
 #### Solution
 *Description:* The direct idea is to implement the process of penalization to the E-step, where the centers redetermine. By always penalizing the extra ones, the proper k can be determined. But with implementation and more thinking, it can be found this algorithm is unstable and influenced by initialization. For some cases it still won't make sense.  
 More generally, I think it cannot implement with nice results, there is always some cases cannot be avoid by penalization such as:   
@@ -192,8 +192,8 @@ With the results, we can say that for proper initialization, there will be a nic
 
 
 #### 3. model selection of GMM
-<center> ![](prob31.png) </center>
-<center> ![](prob32.png) </center>
+ ![](prob31.png)
+ ![](prob32.png) 
 #### Solution
 
 *Description:* To compare the performace between AIC, BIC and VBEM, the datasets are generated with different number of clusters: 2,4,8,12, and the dimension of datasets changes from 2D to 4D. To add some inequalities, the number of samples of each cluster changes from <200 to <1000 randomly. For AIC and BIC, we can just select the lowest result to get the optimal k, and for vbem, the optimal k is selected via lower bound.
