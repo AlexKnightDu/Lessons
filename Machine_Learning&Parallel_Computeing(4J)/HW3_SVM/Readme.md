@@ -121,7 +121,7 @@
     for i in range(len(test_label)):
         OR_linear_predict += [check(OR_linear_1_predict[0][i], OR_linear_0_predict[0][i], OR_linear__1_predict[0][i], OR_linear_1_predict[2][i], OR_linear_0_predict[2][i], OR_linear__1_predict[2][i])]
         OR_RBF_predict += [check(OR_RBF_1_predict[0][i], OR_RBF_0_predict[0][i], OR_RBF__1_predict[0][i],OR_RBF_1_predict[2][i], OR_RBF_0_predict[2][i], OR_RBF__1_predict[2][i])]
-...
+	...
 	```
 	但由于存在都预测为其他类，没有结果为1的情况，在判断时增加了比较相关系数的操作，都是-1的情况下，选取相关系数最大的svm：
 	
@@ -135,7 +135,7 @@
     if ((f >= e) and (f >= g)): return 0
     if ((g >= e) and (g >= f)): return -1
     return 1
-...
+	...
 	```
 	最后输出混淆矩阵
 	
@@ -166,7 +166,7 @@
     linear_param = svm_parameter('-t 0 -c 1 -b 1 -g 1')
     # RBF核
     RBF_param = svm_parameter('-t 2 -c 1 -b 1 -g 0.0001')
-    ```
+   ```
 
 4. 通过混淆矩阵我们可以看到具体的分类结果如下：
 
