@@ -1,8 +1,0 @@
-0.001 constant (100, 20) logistic lbfgs
-             precision    recall  f1-score   support
-
-       -1.0       0.82      0.86      0.84      1044
-        1.0       0.86      0.83      0.85      1131
-
-avg / total       0.84      0.84      0.84      2175
-
