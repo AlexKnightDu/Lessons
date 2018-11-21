@@ -166,7 +166,8 @@
     linear_param = svm_parameter('-t 0 -c 1 -b 1 -g 1')
     # RBF核
     RBF_param = svm_parameter('-t 2 -c 1 -b 1 -g 0.0001')
-   ```
+  	```
+
 
 4. 通过混淆矩阵我们可以看到具体的分类结果如下：
 
