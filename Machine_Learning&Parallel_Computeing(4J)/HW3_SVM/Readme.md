@@ -1,6 +1,6 @@
 # <center> 第三次作业 </center>
 
-<center> ![](hw3.png) </center> 
+![](hw3.png) 
 
 ##### Solution
 1. 采用了Python环境进行编程，环境搭建参照了官网教程，由于采用了Anaconda的环境，所以直接在make之后将svm.py和svmutil.py拷贝至对应的bin文件夹，把对应的.so库文件拷贝至对应的lib文件夹
