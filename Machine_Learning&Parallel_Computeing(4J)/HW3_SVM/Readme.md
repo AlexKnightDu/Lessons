@@ -14,7 +14,7 @@
     OO_RBF_model = svm_train(prob, RBF_param)
     OO_linear_predict = svm_predict(test_label, test_data, OO_linear_model)
     OO_RBF_predict = svm_predict(test_label, test_data, OO_RBF_model)
-...
+	...
 	```
 	
 	但是也可以手动模拟，通过对标签进行预处理只挑选出相应的两类标签，分别训练3个二分类svm，然后再对预测数据进行投票来得到结果：
