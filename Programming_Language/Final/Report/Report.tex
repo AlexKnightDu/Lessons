@@ -1,0 +1,624 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% University/School Laboratory Report
+% LaTeX Template
+% Version 3.1 (25/3/14)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Linux and Unix Users Group at Virginia Tech Wiki 
+% (https://vtluug.org/wiki/Example_LaTeX_chem_lab_report)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl}
+
+\usepackage[version=3]{mhchem} % Package for chemical equation typesetting
+\usepackage{siunitx} % Provides the \SI{}{} and \si{} command for typesetting SI units
+\usepackage{graphicx} % Required for the inclusion of images
+\usepackage{natbib} % Required to change bibliography style to APA
+\usepackage{amsmath} % Required for some math elements 
+
+% \setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  language=Octave,                % the language of the code
+  basicstyle=\footnotesize,           % the size of the fonts that are used for the code
+  numbers=left,                   % where to put the line-numbers
+  numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  stepnumber=2,                   % the step between two line-numbers. If it's 1, each line 
+                                  % will be numbered
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},      % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  title=\lstname,                   % show the filename of files included with \lstinputlisting;
+                                  % also try caption instead of title
+  keywordstyle=\color{blue},          % keyword style
+  commentstyle=\color{dkgreen},       % comment style
+  stringstyle=\color{mauve},         % string literal style
+  escapeinside={\%*}{*)},            % if you want to add LaTeX within your code
+  morekeywords={*,...}               % if you want to add more keywords to the set
+}
+
+
+\renewcommand{\labelenumi}{\alph{enumi}.} % Make numbering in the enumerate environment by letter rather than number (e.g. section 6)
+
+%\usepackage{times} % Uncomment to use the Times New Roman font
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{ 
+\normalfont \normalsize 
+\huge CS383 Course Project Report \\ SimPL Interpreter % Your university, school and/or department name(s)
+}
+
+
+% \title{CS383 Course Project \\ SimPL Interpreter} % Title
+
+\date{\today} % Date for the report
+
+\begin{document}
+
+\maketitle % Insert the title, author and date
+
+% \begin{center}
+% \begin{tabular}{l r}
+% Date Performed: & January 1, 2012 \\ % Date the experiment was performed
+% Partners: & James Smith \\ % Partner names
+% & Mary Smith \\
+% Instructor: & Professor Smith % Instructor/supervisor
+% \end{tabular}
+% \end{center}
+
+% If you wish to include an abstract, uncomment the lines below
+% \begin{abstract}
+% Abstract text
+% \end{abstract}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+
+\section{Overview}
+
+The objective of this course project is to achieve a interpreter for simPL, which is a  simplified dialect of ML. The lexical and syntactic analyzer can be provided in the skeleton architecture.\\
+The implementation is based on skeleton architecture, including the parser, interpreter and typing three parts. To implement the basic part, it's needed to complete all the java TODO functions in three parts. According to the semantic rules, they can be completed realtively easy in similiar ways. \\
+For the bonus, there are six features optional. The mutually recursive combinator ($Y^*$) and infinite streams needs new keywords and corresponding rules, for lack of experience of using parser of java-cup and time limited, both are unconsummated. The polymorphic type is achieved by implement TypeVar class. The garbage collection is implemented with mark and sweep algorithm. The tail recursion optimization concerns about the recursive unfolding, and the transfrom to iterative loop needs to take many conditions into account, with time limitation, it was not implemented. The lazy evaluation is achieved by a history buffer table.
+
+
+
+% \begin{center}\ce{2 Mg + O2 -> 2 MgO}\end{center}
+
+% If you have more than one objective, uncomment the below:
+%\begin{description}
+%\item[First Objective] \hfill \\
+%Objective 1 text
+%\item[Second Objective] \hfill \\
+%Objective 2 text
+%\end{description}
+
+% \subsection{Definitions}
+% \label{definitions}
+% \begin{description}
+% \item[Stoichiometry]
+% The relationship between the relative quantities of substances taking part in a reaction or forming a compound, typically a ratio of whole integers.
+% \item[Atomic mass]
+% The mass of an atom of a chemical element expressed in atomic mass units. It is approximately equivalent to the number of protons and neutrons in the atom (the mass number) or to the average number allowing for the relative abundances of different isotopes. 
+% \end{description} 
+ 
+%----------------------------------------------------------------------------------------
+%	SECTION 2
+%----------------------------------------------------------------------------------------
+
+\section{Implementation}
+The whole interpreter starts from Interpreter.java, where the .spl files get parsed and expressions get evaluated. The three statements in run function are corresponding to what we need to implement: Expr program, program.typecheck() and program.eval().
+
+\subsection{Typing}
+The implementation of typing is based on type inference rules. All the type classes inherit the Expr class and all the TODOs in this part are to achieve the isEqualityType, unify, contains and replace operations. In the process of typecheck, when there is new information about certain type, which is a TypeVar object there, we will use unify to bind this new type to former type and create new substitution. Besides, the isEqualityType tells whether this type can be compared.
+
+\begin{itemize}
+\item Type.java \\
+Base class with abstract functions.
+\item TypeVar.java \\
+Used as a temp type class before substition, so it also need to implement the functions.
+\item Substitution.java \\
+Core class of typecheck. After there is more bind from TypeVar to certain Type, it will store the type binding information. It includes three subclasses:Identity, Replace, Compose. Identity is a static member,it binds every type with exactly the same type. Replace stores the bind for only one typevar and its actual type. Compose is used to compose two substitution into one. In each subclass there is a corresponding apply function to do replacement in a type using the binding information in substitution.
+\begin{lstlisting}[title=Substitution, frame=shadowbox]
+    private static final class Identity extends Substitution {
+        public Type apply(Type t) {
+            return t;
+        }
+    }
+
+    private static final class Replace extends Substitution {
+        private TypeVar a;
+        private Type t;
+
+        public Replace(TypeVar a, Type t) {
+            this.a = a;
+            this.t = t;
+        }
+
+        public Type apply(Type b) {
+            return b.replace(a, t);
+        }
+    }
+
+    private static final class Compose extends Substitution {
+        private Substitution f, g;
+
+        public Compose(Substitution f, Substitution g) {
+            this.f = f;
+            this.g = g;
+        }
+
+        public Type apply(Type t) {
+            return f.apply(g.apply(t));
+        }
+    }
+\end{lstlisting}
+\item *Type.java \\
+Similar with TypeVar class, it need to implement the functions accorinding to its type.
+\begin{lstlisting}[title=RefType, frame=shadowbox]
+    @Override
+    public boolean isEqualityType() {
+        return true;
+    }
+
+    @Override
+    public Substitution unify(Type t) throws TypeError {
+        if(t instanceof RefType)
+            return this.t.unify(((RefType) t).t);
+        else if(t instanceof TypeVar)
+            return t.unify(this);
+        else {
+            throw new TypeMismatchError();
+        }
+    }
+
+    @Override
+    public boolean contains(TypeVar tv) {
+        return t.contains(tv);
+    }
+
+    @Override
+    public Type replace(TypeVar a, Type t) {
+        return new RefType(t.replace(a, t));
+    }
+
+\end{lstlisting}
+
+\end{itemize}
+
+\subsection{Interpreter}
+In this part, corresponding to package simple.interpreter, we implement the essential supports for interpreter, such as value, state, memory and environment. 
+\begin{itemize}
+\item Value.java \\
+Just like Type.java, all value class inherit this class and achieve the equal operation. It includes NIL and UNIT, which are static method to acquire nil value or unit.
+\item Env.java \\
+It stores all the binding of symbols and values for every given variable. Every Env (except empty one) is regarded as smaller one associated with a new x-v binding. It has get and clone operation. We can use get to find value for given variable symbol. But if variable not exists, it will return null. And we can use clone to get a copy of this environment.
+\begin{lstlisting}[title=Env, frame=shadowbox]
+    public Value get(Symbol y) {
+        // if y==x, return v, else find the value in E
+        if(y.toString().equals(x.toString())){
+            return v;
+        }
+        return E.get(y);
+    }
+
+    public Env clone() {
+        return new Env(E,x,v);
+    }
+\end{lstlisting}
+\item State.java \\
+It's a unit of Env and Mem. It keeps changing, so it use a int p as a conference of now.
+\item Mem.java \\
+Mem is a binding with pointer and its stuff, which can be realized in a hashmap.
+\item Basic operations \\
+There are 7 built-in function to be implemented, which are subclass of FunValue. Besides the contructor, they also need to implement the typecheck and eval operation.
+\begin{lstlisting}[title=iszero, frame=shadowbox]
+
+public class iszero extends FunValue {
+
+    public iszero() {
+        super(Env.empty,Symbol.symbol("x"),new Expr(){
+
+            @Override
+            public TypeResult typecheck(TypeEnv E) throws TypeError {
+                return null;
+            }
+
+            @Override
+            public Value eval(State s) throws RuntimeError {
+                IntValue iv = (IntValue)(s.E.get(Symbol.symbol("x")));
+                return new BoolValue(iv.n==0);
+            }
+            
+        });
+    }
+}
+
+\end{lstlisting}
+\item *Value.java \\
+inherit Value class, it need to implement the equal function accorinding to its type.
+\end{itemize}
+
+
+
+\subsection{Expressions}
+With all the types and values ready we can achieve the typecheck and evaluation of each expression. All the expression classes inherits the Expr class and all the TODOs in this part are to achieve the typecheck and eval operations of corresponding expression class.
+
+\begin{itemize}
+\item App.java \\
+It need to apply l on r, so it need eval l and r first, then create a FunValue.
+\item Name.java \\
+It get the value from the environment. For recursion, it construct a new RecValue to continue the recursion. 
+\item *.java \\
+For other expressions, the implementations of typecheck and eval are silmilar.
+\begin{lstlisting}[title=Ref.java, frame=shadowbox]
+    @Override
+    public TypeResult typecheck(TypeEnv E) throws TypeError {
+        TypeResult typeResult = e.typecheck(E);
+        Substitution s = typeResult.s;
+
+        Type type = typeResult.t;
+        type = s.apply(type);
+
+        return TypeResult.of(s,new RefType(type));
+    }
+
+    @Override
+    public Value eval(State s) throws RuntimeError {
+        int pointer = s.get_pointer();
+        Value v = e.eval(s);
+        //put pointer as a key for value v
+        s.M.put(pointer, v);
+        return new RefValue(pointer);
+    }
+\end{lstlisting}
+\end{itemize}
+
+
+
+% \begin{tabular}{ll}
+% Mass of empty crucible & \SI{7.28}{\gram}\\
+% Mass of crucible and magnesium before heating & \SI{8.59}{\gram}\\
+% Mass of crucible and magnesium oxide after heating & \SI{9.46}{\gram}\\
+% Balance used & \#4\\
+% Magnesium from sample bottle & \#1
+% \end{tabular}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 3
+%----------------------------------------------------------------------------------------
+\section{Features}
+\subsection{Polymorphic type}
+Actually, with class TypeVar implemented, the simPL can be regarded as polymorphic language, or rather, parametric polymorphism.
+\begin{lstlisting}[title=map.spl, frame=shadowbox]
+(* using polymorphic types *)
+rec map =>
+  fn f => fn l =>
+    if l=nil
+    then nil
+    else (f (hd l))::(map f (tl l))
+\end{lstlisting}
+And we can see the result:
+\begin{lstlisting}[title=Result, frame=shadowbox]
+doc/examples/map.spl
+((tv53 -> tv60) -> (tv53 list -> tv60 list))
+fun
+\end{lstlisting}
+
+\subsection{Garbage collection (of ref cells)}
+There we use mark and sweep algorithm to achieve garbage collection. So at first, to represent the value and mark flag of memory, we create the MemUse class:
+\begin{lstlisting}[title=MemUse.java, frame=shadowbox]
+public class MemUse{
+    public Value value;
+    public boolean mark;
+    public MemUse(Value value) {
+        this.value = value;
+        mark = false;
+    }
+}
+
+\end{lstlisting}
+For the memory can only be allocated to ref, so it is easy to mark by check the ref in current environment.
+\begin{lstlisting}[title=State.java, frame=shadowbox]
+    public void mark(Env E){
+        if(E==null)
+            return;
+        Symbol x = E.get_symbol();
+        Value v = E.get_value();
+        if(x !=null && v instanceof RefValue){
+            int pointer = ((RefValue)v).p;
+            this.M.mark(pointer);
+        }
+    }
+    
+
+\end{lstlisting}
+As for sweep, we have to rewrite mem to refresh allocated information. For the collected free spaces’s pointers, there we use a stack freelist to store .
+\begin{lstlisting}[title=Mem.java, frame=shadowbox]
+   
+   public void sweep(){
+      for(Integer p:alloList){
+          MemUse m = memMap.get(p);
+          if(m.mark) {
+              demark(p);
+          }else{
+              tmp.push(p);
+          }
+      }
+      while(!tmp.isEmpty()){
+          Integer p = tmp.pop();
+          delete(p);
+      }
+   }
+   
+\end{lstlisting}
+There we run a test .spl file to test the garbage collection:
+\begin{lstlisting}[title=mem.spl, frame=shadowbox]
+let y=ref 0 in
+	let y=ref 1 in
+		let y=ref 2 in
+			let x=ref 3 in !x
+			end
+		end 
+	end
+end
+\end{lstlisting}
+And we get the result:
+\begin{lstlisting}[title=Result, frame=shadowbox]
+doc/examples/mem.spl
+int
+3
+\end{lstlisting}
+Obviously,Mem[2] is marked and the space of Mem[0] and Mem[1] is collected.
+
+\subsection{Lazy evaluation}
+Lazy evaluation is an evaluation strategy which delays the evaluation of an expression until its value is needed and also avoids repeated evaluations. So there must be a structure to store the expressions and also a buffer to store the latest evaluations and results.  \\
+To store the expression, we define the FuncEntry class, where fun is this function,and para is its value.
+\begin{lstlisting}[title=FuncEntry.java, frame=shadowbox]
+public class FuncEntry {
+
+        Value fun;
+        Value para;
+        Value result;
+        
+        public FuncEntry(Value expr,Value p) {
+            fun = expr;
+            para = p;
+        }
+        
+        public boolean equal(FuncEntry f){
+            return para.equals(f.para)&& fun.equals(f.fun);        
+        }
+        
+        public void set_result(Value r){
+            this.result = r;
+        }
+}
+\end{lstlisting}
+To store the evaluations, we define the LazyTable, which is FuncEntry stack only store recursive function’s value done:
+\begin{lstlisting}[title=LazyTable.java, frame=shadowbox]
+public class LazyTable {
+    private Stack<FuncEntry> table ;
+        
+        public LazyTable() {
+            table = new Stack<FuncEntry>();
+        }
+               
+        public Value get_result(FuncEntry fe){
+            for (FuncEntry f:table){
+                if (f.equal(fe)){
+                        //System.out.println("found previos result"+fe.fun+fe.para);
+                        return f.result;
+                }
+            }
+            return null;
+        }
+        
+        public void put(FuncEntry fe,Value result) {
+            fe.set_result(result);
+            table.push(fe);
+            clear();
+        }
+        
+        public void clear(){
+            if(table.size()>200){
+                while(table.size()>200){
+                    table.pop();
+                }
+            }
+        }
+        
+        
+}
+\end{lstlisting}
+We use fibonacci test it:
+\begin{lstlisting}[title=pcf.fibonacci.spl, frame=shadowbox]
+let plus = rec p =>
+      fn x => fn y => if iszero x then y else p (pred x) (succ y)
+in
+  let fibonacci = rec f =>
+	fn n => if iszero n then
+		  0
+		else if iszero (pred n) then
+		  1
+		else
+		  plus (f (pred n)) (f (pred (pred n)))
+  in
+    fibonacci 6
+  end
+end
+\end{lstlisting}
+Then we can get the result: 
+\begin{lstlisting}[title=Result, frame=shadowbox]
+doc/examples/pcf.fibonacci.spl
+int
+Reuse stored evaluations: fun 1
+Reuse stored evaluations: fun 1
+Reuse stored evaluations: fun 0
+Reuse stored evaluations: fun 2
+Reuse stored evaluations: fun 1
+Reuse stored evaluations: fun 0
+Reuse stored evaluations: fun 3
+Reuse stored evaluations: fun 2
+Reuse stored evaluations: fun 1
+Reuse stored evaluations: fun 0
+Reuse stored evaluations: fun 4
+Reuse stored evaluations: fun 3
+Reuse stored evaluations: fun 2
+Reuse stored evaluations: fun 1
+Reuse stored evaluations: fun 0
+8
+\end{lstlisting}
+We can see that the evaluation is delayed, and after one evaluation, the next evaluation will just get from the table.
+% \begin{tabular}{ll}
+% Mass of magnesium metal & = \SI{8.59}{\gram} - \SI{7.28}{\gram}\\
+% & = \SI{1.31}{\gram}\\
+% Mass of magnesium oxide & = \SI{9.46}{\gram} - \SI{7.28}{\gram}\\
+% & = \SI{2.18}{\gram}\\
+% Mass of oxygen & = \SI{2.18}{\gram} - \SI{1.31}{\gram}\\
+% & = \SI{0.87}{\gram}
+% \end{tabular}
+
+% Because of this reaction, the required ratio is the atomic weight of magnesium: \SI{16.00}{\gram} of oxygen as experimental mass of Mg: experimental mass of oxygen or $\frac{x}{1.31}=\frac{16}{0.87}$ from which, $M_{\ce{Mg}} = 16.00 \times \frac{1.31}{0.87} = 24.1 = \SI{24}{\gram\per\mole}$ (to two significant figures).
+
+%----------------------------------------------------------------------------------------
+%	SECTION 4
+%----------------------------------------------------------------------------------------
+
+\section{Results}
+For the example .spl files we can get these resules:
+\begin{lstlisting}[title=Result, frame=shadowbox]
+doc/examples/true.spl
+type error
+doc/examples/plus.spl
+int
+3
+doc/examples/factorial.spl
+int
+24
+doc/examples/gcd1.spl
+int
+1029
+doc/examples/gcd2.spl
+int
+1029
+doc/examples/max.spl
+int
+2
+doc/examples/mem.spl
+int
+3
+doc/examples/sum.spl
+int
+6
+doc/examples/map.spl
+((tv53 -> tv60) -> (tv53 list -> tv60 list))
+fun
+doc/examples/pcf.sum.spl
+(int -> (int -> int))
+fun
+doc/examples/pcf.even.spl
+(int -> bool)
+fun
+doc/examples/pcf.minus.spl
+int
+46
+doc/examples/pcf.factorial.spl
+int
+720
+doc/examples/pcf.fibonacci.spl
+int
+6765
+doc/examples/pcf.twice.spl
+type error
+doc/examples/pcf.lists.spl
+type error
+\end{lstlisting}
+
+% The atomic weight of magnesium is concluded to be \SI{24}{\gram\per\mol}, as determined by the stoichiometry of its chemical combination with oxygen. This result is in agreement with the accepted value.
+
+% \begin{figure}[h]
+% \begin{center}
+% \includegraphics[width=0.65\textwidth]{placeholder.jpg} % Include the image placeholder.png
+% \caption{Figure caption.}
+% \end{center}
+% \end{figure}
+
+\section{Summary}
+It's really benefit a lot from this project. Although the implementations are similar, the attemptation at the begining and the process of debug were quite tough. Only after the success run of the first expression, then all gets easier. When it comes to bonus part, the implementation gets harder again. With a lot of trying, there still some features unfinised, which is a small regret. Above all this project gives me a clear understanding on how the interpreter run. Finally really appreciate the instructions from teacher and the helps from TA, really thanks a lot!
+%----------------------------------------------------------------------------------------
+%	SECTION 5
+%----------------------------------------------------------------------------------------
+
+% \section{Discussion of Experimental Uncertainty}
+
+% The accepted value (periodic table) is \SI{24.3}{\gram\per\mole} \cite{Smith:2012qr}. The percentage discrepancy between the accepted value and the result obtained here is 1.3\%. Because only a single measurement was made, it is not possible to calculate an estimated standard deviation.
+
+% The most obvious source of experimental uncertainty is the limited precision of the balance. Other potential sources of experimental uncertainty are: the reaction might not be complete; if not enough time was allowed for total oxidation, less than complete oxidation of the magnesium might have, in part, reacted with nitrogen in the air (incorrect reaction); the magnesium oxide might have absorbed water from the air, and thus weigh ``too much." Because the result obtained is close to the accepted value it is possible that some of these experimental uncertainties have fortuitously cancelled one another.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 6
+%----------------------------------------------------------------------------------------
+
+% \section{Answers to Definitions}
+
+% \begin{enumerate}
+% \begin{item}
+% The \emph{atomic weight of an element} is the relative weight of one of its atoms compared to C-12 with a weight of 12.0000000$\ldots$, hydrogen with a weight of 1.008, to oxygen with a weight of 16.00. Atomic weight is also the average weight of all the atoms of that element as they occur in nature.
+% \end{item}
+% \begin{item}
+% The \emph{units of atomic weight} are two-fold, with an identical numerical value. They are g/mole of atoms (or just g/mol) or amu/atom.
+% \end{item}
+% \begin{item}
+% \emph{Percentage discrepancy} between an accepted (literature) value and an experimental value is
+% \begin{equation*}
+% \frac{\mathrm{experimental\;result} - \mathrm{accepted\;result}}{\mathrm{accepted\;result}}
+% \end{equation*}
+% \end{item}
+% \end{enumerate}
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+% \bibliographystyle{apalike}
+
+% \bibliography{sample}
+
+%----------------------------------------------------------------------------------------
+
+
+\end{document}

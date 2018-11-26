@@ -1,0 +1,8 @@
+let y=ref 0 in
+	let y=ref 1 in
+		let y=ref 2 in
+			let x=ref 3 in !x
+			end
+		end 
+	end
+end
