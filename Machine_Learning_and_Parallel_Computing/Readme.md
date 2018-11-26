@@ -1,6 +1,5 @@
 ### Machine learning and parallel computing (4J)
-It's a engingeering creative practice curriculum (IV-J).  
-
+It's a engingeering creative practice curriculum (IV-J), taught by LvBaoliang.   
 Mainly talking about the basic knowledge of machine learning and slightly about parallel computing.
 
 - HW1 is about single neuronal perceptron also dip into tensorflow.
